@@ -14,7 +14,11 @@ public class SceneNode : IEnumerable<SceneNode> {
     /// </summary>
     /// <value></value>
     public Scene? Scene => (Parent != null) ? Parent.Scene : this.root_scene;
+
+    // Use this to hide the property from doxygen
+    /*! \cond PRIVATE */
     internal Scene? root_scene = null;
+    /*! \endcond */
 
     /// <summary>
     /// Parent node in the scene graph if it exists

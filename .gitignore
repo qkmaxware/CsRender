@@ -3,4 +3,6 @@ obj/
 TestResults/
 
 /doxygen/
-docs/doxygen/*
+/docs/doxygen/*
+!/docs/doxygen/.gitkeep
+!/docs/doxygen/.pages
