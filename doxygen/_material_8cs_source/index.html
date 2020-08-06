@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/_material_8cs_source/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>File Material.cs - Qkmaxware.Rendering</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "File Material.cs";
+    var mkdocs_page_input_path = "doxygen/_material_8cs_source.md";
+    var mkdocs_page_url = "/CsRender/doxygen/_material_8cs_source/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Qkmaxware.Rendering</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Welcome</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installing/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using/">Usage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../references/">References</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Qkmaxware.Rendering</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Doxygen &raquo;</li>
+        
+      
+    
+    <li>File Material.cs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/_material_8cs_source.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="file-materialcs">File Material.cs</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_3d93a40d3a63baa1169d25b6af232e01/"><strong>Render</strong></a> <strong>&gt;</strong> <a href="../dir_215dca11daae57d51d6f58cd4be0ab9f/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_material_8cs/"><strong>Material.cs</strong></a></p>
+<p><a href="../_material_8cs/">Go to the documentation of this file.</a> </p>
+<pre><code class="cpp">using System;
+using System.Drawing;
+using System.Linq;
+using Qkmaxware.Geometry;
+
+namespace Qkmaxware.Rendering {
+
+public class Material {
+    public bool TwoSided = false;
+    public virtual Color Vert(ShaderVariables variables) { return Color.Transparent; }
+    public virtual Color Edge(ShaderVariables variables) { return Fragment(variables); }
+    public virtual Color Fragment(ShaderVariables variables) { return Color.Transparent; }
+}
+
+public class Wireframe : Material {
+    public Color Colour = Color.White;
+
+    public Wireframe(Color colour) {
+        this.Colour = colour;
+        this.TwoSided = true;
+    }
+    public override Color Edge(ShaderVariables variables) {
+        return this.Colour;
+    }
+}
+
+public class UnlitColour : Material {
+    public Color Colour = Color.White;
+    public UnlitColour(Color colour) {
+        this.Colour = colour;
+    }
+    public override Color Edge(ShaderVariables variables) {
+        return Colour;
+    }
+    public override Color Fragment(ShaderVariables variables) { 
+        return Colour;
+    }
+}
+
+public enum TextureWrapMode {
+    Clamp,
+    Repeat,
+}
+
+public class TexturedMaterial : Material {
+    public Color[,] Texture;
+    public TextureWrapMode WrapMode = TextureWrapMode.Clamp;
+
+    protected int TextureHeight =&gt; Texture.GetLength(0);
+    protected int TextureWidth =&gt; Texture.GetLength(1);
+
+    public TexturedMaterial(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) {
+        this.Texture = texture;
+        this.WrapMode = wrap;
+    }
+
+    private int Wrap(int x, int x_min, int x_max) {
+        return (((x - x_min) % (x_max - x_min)) + (x_max - x_min)) % (x_max - x_min) + x_min;
+    }
+    private int Clamp(int x, int x_min, int x_max) {
+        return x &lt; x_min ? x_min : (x &gt; x_max ? x_max : x);
+    }
+
+    protected Color ColourSample(Vec2 uv) {
+        var uvx = (int)(uv.X * TextureWidth);
+        var uvy = (int)(uv.Y * TextureHeight);
+
+        switch (WrapMode) {
+            case TextureWrapMode.Repeat:
+                uvx = Wrap(uvx, 0, TextureWidth - 1);
+                uvy = Wrap(uvy, 0, TextureHeight - 1);
+                break;
+            case TextureWrapMode.Clamp:
+            default:
+                uvx = Clamp(uvx, 0, TextureWidth - 1);
+                uvy = Clamp(uvy, 0, TextureHeight - 1);
+                break;
+        }
+
+        return Texture[uvy, uvx];
+    }
+}
+
+public class UnlitTexture : TexturedMaterial {
+    public UnlitTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+
+    public override Color Edge(ShaderVariables variables) {
+        return Fragment(variables);
+    }
+    public override Color Fragment(ShaderVariables variables) {
+        return ColourSample(variables.UVCoordinates);
+    }
+}
+
+public class DiffuseColour : Material {
+    public Color Colour = Color.White;
+    public double Albedo = 1;
+
+    public DiffuseColour(Color colour) {
+        this.Colour = colour;
+    }
+
+    private Color Darken(Color colour, double shade) {
+        double r = shade * colour.R;
+        double g = shade * colour.G;
+        double b = shade * colour.B;
+
+        return Color.FromArgb(colour.A, (int)r % 255, (int)g % 255, (int)b % 255);
+    }
+
+    private Color Mix(Color a, Color b) {
+        return Color.FromArgb(
+            a.A,
+            (a.R * b.R)/255,
+            (a.G * b.G)/255,
+            (a.B * b.B)/255
+        );
+    }
+    public override Color Fragment(ShaderVariables variables) {
+        var surfColour = Colour;
+        Vec3 N = variables.WorldNormal;
+        var tint = variables.LightSources.Select((light) =&gt; {
+            var lightColour = light.Tint;
+            Vec3 L = light.Direction(variables.WorldPosition, variables.WorldNormal);
+            double Lintensity = light.Intensity(variables.WorldPosition, variables.WorldNormal);
+            double diffuse_surface_shade = (Albedo / Math.PI) * Lintensity * Math.Max(Vec3.Dot(L, N), 0);
+
+            return Darken(lightColour, diffuse_surface_shade);
+        }).Aggregate((a,b) =&gt; Mix(a, b));
+        return Mix(surfColour, tint);
+    }
+}
+
+public class DiffuseTexture : TexturedMaterial {
+    public Color Colour = Color.White;
+    public double Albedo = 1;
+
+    public DiffuseTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+
+    private Color Darken(Color colour, double shade) {
+        double r = shade * colour.R;
+        double g = shade * colour.G;
+        double b = shade * colour.B;
+
+        return Color.FromArgb(colour.A, (int)r % 255, (int)g % 255, (int)b % 255);
+    }
+
+    private Color Mix(Color a, Color b) {
+        return Color.FromArgb(
+            a.A,
+            (a.R * b.R)/255,
+            (a.G * b.G)/255,
+            (a.B * b.B)/255
+        );
+    }
+    public override Color Fragment(ShaderVariables variables) {
+        var surfColour = ColourSample(variables.UVCoordinates);
+        Vec3 N = variables.WorldNormal;
+        var tint = variables.LightSources.Select((light) =&gt; {
+            var lightColour = light.Tint;
+            Vec3 L = light.Direction(variables.WorldPosition, variables.WorldNormal);
+            double Lintensity = light.Intensity(variables.WorldPosition, variables.WorldNormal);
+            double diffuse_surface_shade = (Albedo / Math.PI) * Lintensity * Math.Max(Vec3.Dot(L, N), 0);
+
+            return Darken(lightColour, diffuse_surface_shade);
+        }).Aggregate((a,b) =&gt; Mix(a, b));
+        return Mix(surfColour, tint);
+    }
+}
+
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../_perspective_camera_8cs/" class="btn btn-neutral float-right" title="File PerspectiveCamera.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../_material_8cs/" class="btn btn-neutral" title="File Material.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../_material_8cs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../_perspective_camera_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

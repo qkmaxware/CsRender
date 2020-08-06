@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/_base_camera_8cs_source/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>File BaseCamera.cs - Qkmaxware.Rendering</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "File BaseCamera.cs";
+    var mkdocs_page_input_path = "doxygen/_base_camera_8cs_source.md";
+    var mkdocs_page_url = "/CsRender/doxygen/_base_camera_8cs_source/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Qkmaxware.Rendering</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Welcome</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installing/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using/">Usage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../references/">References</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Qkmaxware.Rendering</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Doxygen &raquo;</li>
+        
+      
+    
+    <li>File BaseCamera.cs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/_base_camera_8cs_source.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="file-basecameracs">File BaseCamera.cs</h1>
+<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_3d93a40d3a63baa1169d25b6af232e01/"><strong>Render</strong></a> <strong>&gt;</strong> <a href="../dir_215dca11daae57d51d6f58cd4be0ab9f/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_base_camera_8cs/"><strong>BaseCamera.cs</strong></a></p>
+<p><a href="../_base_camera_8cs/">Go to the documentation of this file.</a> </p>
+<pre><code class="cpp">using System;
+using System.Linq;
+using System.Drawing;
+using Qkmaxware.Geometry;
+using System.Collections.Generic;
+
+namespace Qkmaxware.Rendering {
+
+public abstract class BaseCamera : SceneNode {
+
+    public Size Size {get; private set;}
+    public Color[,] PixelBuffer {get; private set;}
+    public double[,] DepthBuffer {get; private set;}
+    public Skybox Skybox {get; private set;} = new Skybox();
+
+    protected readonly double focallength = 1;
+    protected double nearClipDistance = 0.1;
+    protected double farClipDistance = 1000;
+
+    public BaseCamera(Size size) {
+        this.Size = size;
+        this.PixelBuffer = new Color[size.Height,size.Width];
+        this.DepthBuffer = new double[size.Height,size.Width];
+        Dirty();
+    }
+
+    public void SetClippingDistance(double near, double far) {
+        this.nearClipDistance = Math.Min(near, far);
+        this.farClipDistance = Math.Max(near, far);
+        Dirty();
+    }
+
+    protected abstract void Dirty();
+    public abstract Vec3 WorldToScreenPoint(Vec3 world);
+    public abstract Vec3 ScreenToWorldPoint(Vec2 screen);
+
+    private void ClearPixels() {
+        for (int i = 0; i &lt; PixelBuffer.GetLength(0); i++)
+            for (int j = 0; j &lt; PixelBuffer.GetLength(1); j++)
+                PixelBuffer[i, j] = Skybox.GetPixel(this, j, i);
+    }
+
+    private void ClearDepth() {
+        for (int i = 0; i &lt; DepthBuffer.GetLength(0); i++)
+            for (int j = 0; j &lt; DepthBuffer.GetLength(1); j++)
+                DepthBuffer[i, j] = farClipDistance;
+    }
+
+    public void Render(Scene scene) {
+        // Clean data
+        ClearPixels();
+        ClearDepth();
+
+        // Set constant shader properties
+        var vars = new ShaderVariables();
+        vars.WorldCameraPosition = this.Position;
+        vars.LightSources = scene.OfType&lt;LightSource&gt;().ToList().AsReadOnly();
+
+        // Loop over all models
+        foreach (var renderable in scene.OfType&lt;Renderable&gt;()) {
+            vars.ModelToWorld = renderable.LocalToWorldMatrix;
+            if (renderable.Mesh != null &amp;&amp; renderable.Material != null) {
+                Render(ref vars, renderable.Mesh, renderable.UVs, renderable.Material);
+            }
+        }
+    }
+
+    private void Render(ref ShaderVariables shader, IEnumerable&lt;Triangle&gt; tris, IUvMap? uvs, Material material) {
+        var backwards = this.Backward;
+        foreach (var tri in tris) {
+            var worldTri = tri.Transform(shader.ModelToWorld); // Convert to world space
+            shader.WorldNormal = worldTri.Normal;
+
+            // Backface culling
+            if (!material.TwoSided) {
+                var normal = worldTri.Normal; 
+                if (Vec3.Dot(backwards, normal) &lt; -0.1) {
+                    continue;
+                }
+            }
+
+            // Get triangles
+            var v1 = WorldToScreenPoint(worldTri.Item1);
+            var v2 = WorldToScreenPoint(worldTri.Item2);
+            var v3 = WorldToScreenPoint(worldTri.Item3);
+
+            // Get the UV coordinates
+            Vec2 uv1 = (uvs != null) ? uvs[tri.Item1] : Vec2.Zero;
+            Vec2 uv2 = (uvs != null) ? uvs[tri.Item2] : Vec2.Zero;
+            Vec2 uv3 = (uvs != null) ? uvs[tri.Item3] : Vec2.Zero;
+
+            Rasterize(ref shader, worldTri, v1, v2, v3, uv1, uv2, uv3, material);
+        }
+    }
+
+    private void Rasterize(ref ShaderVariables shader, Triangle worldTri, Vec3 v1, Vec3 v2, Vec3 v3, Vec2 uv1, Vec2 uv2, Vec2 uv3, Material material) {
+        // Sort vertices into ascending order of y
+        var worldV1 = worldTri.Item1;
+        var worldV2 = worldTri.Item2;
+        var worldV3 = worldTri.Item3;
+
+        if (v1.Y &gt; v2.Y) {
+            (v1, v2) = (v2, v1);
+            (uv1, uv2) = (uv2, uv1);
+            (worldV1, worldV2) = (worldV2, worldV1);
+        } 
+        if (v2.Y &gt; v3.Y) {
+            (v2, v3) = (v3, v2);
+            (uv2, uv3) = (uv3, uv2);
+            (worldV2, worldV3) = (worldV3, worldV2);
+        }
+        if (v1.Y &gt; v2.Y) {
+            (v1, v2) = (v2, v1);
+            (uv1, uv2) = (uv2, uv1);
+            (worldV1, worldV2) = (worldV2, worldV1);
+        } 
+
+        // Rasterize
+        if (v2.Y == v3.Y) {
+            // Flat Bottom Triangle
+            DrawFlatBottomTriangle (worldV1, worldV2, worldV3, v1, v2, v3, uv1, uv2, uv3, material, ref shader);
+
+            DrawLine(worldV1, worldV2, v1, v2, uv1, uv2, material, ref shader, surface: false);
+            DrawLine(worldV2, worldV3, v2, v3, uv2, uv3, material, ref shader, surface: false);
+            DrawLine(worldV1, worldV3, v1, v3, uv1, uv3, material, ref shader, surface: false);
+
+            DrawVertex(worldV1, v1, uv1, material, ref shader);
+            DrawVertex(worldV2, v2, uv2, material, ref shader);
+            DrawVertex(worldV3, v3, uv3, material, ref shader);
+        } else if (v1.Y == v2.Y) {
+            // Flat Top Triangle
+            DrawFlatTopTriangle (worldV1, worldV2, worldV3, v1, v2, v3, uv1, uv2, uv3, material, ref shader);
+
+            DrawLine(worldV1, worldV2, v1, v2, uv1, uv2, material, ref shader, surface: false);
+            DrawLine(worldV2, worldV3, v2, v3, uv2, uv3, material, ref shader, surface: false);
+            DrawLine(worldV1, worldV3, v1, v3, uv1, uv3, material, ref shader, surface: false);
+
+            DrawVertex(worldV1, v1, uv1, material, ref shader);
+            DrawVertex(worldV2, v2, uv2, material, ref shader);
+            DrawVertex(worldV3, v3, uv3, material, ref shader);
+        } else {
+            // General Triangle
+            double t = (v2.Y - v3.Y)/(v1.Y - v3.Y);
+            Vec3 d = new Vec3(
+                (v1.X) + ((v2.Y - v1.Y) / (v3.Y - v1.Y)) * (v3.X - v1.X),
+                v2.Y,
+                Lerp(v3.Z, v1.Z, t) 
+            );
+            Vec3 worldD = Vec3.Lerp(worldV3, worldV1, t);
+            Vec2 uvd = new Vec2(
+                Lerp(uv3.X, uv1.X, t),
+                Lerp(uv3.Y, uv1.Y, t)
+            );
+
+            DrawFlatBottomTriangle (worldV1, worldV2, worldD, v1, v2, d, uv1, uv2, uvd, material, ref shader);
+            DrawFlatTopTriangle (worldV2, worldD, worldV3, v2, d, v3, uv2, uvd, uv3, material, ref shader);
+
+            DrawLine(worldV1, worldV2, v1, v2, uv1, uv2, material, ref shader, surface: false);
+            DrawLine(worldV2, worldV3, v2, v3, uv2, uv3, material, ref shader, surface: false);
+            DrawLine(worldV1, worldV3, v1, v3, uv1, uv3, material, ref shader, surface: false);
+
+            DrawVertex(worldV1, v1, uv1, material, ref shader);
+            DrawVertex(worldV2, v2, uv2, material, ref shader);
+            DrawVertex(worldV3, v3, uv3, material, ref shader);
+        }
+    }
+
+    private static double Lerp(double a, double b, double t) {
+        return (1 - t) * a + t * b;
+    }
+
+    private static Color Blend(Color backColor, Color color, double amount) {
+        byte r = (byte) ((color.R * amount) + backColor.R * (1 - amount));
+        byte g = (byte) ((color.G * amount) + backColor.G * (1 - amount));
+        byte b = (byte) ((color.B * amount) + backColor.B * (1 - amount));
+        return Color.FromArgb(r, g, b);
+    }
+
+    private void SetPixel(Vec3 pixel, Color c) {
+        var x = (int)pixel.X;
+        var y = (int)pixel.Y;
+        var depth = pixel.Z;
+
+        if (x &gt;= 0 &amp;&amp; y &gt;= 0 &amp;&amp; x &lt; Size.Width &amp;&amp; y &lt; Size.Height) {
+            if (depth &gt;= nearClipDistance &amp;&amp; depth &lt; DepthBuffer[y,x]) {
+                var opacity = c.A / 255.0;
+                // If fully opaque, set the depth buffer
+                DepthBuffer[y,x] = Lerp(DepthBuffer[y,x], depth, opacity);
+                PixelBuffer[y,x] = Blend(PixelBuffer[y,x], c, opacity);
+            }
+        }
+    }
+
+    private void DrawVertex(Vec3 world, Vec3 screen, Vec2 uv, Material material, ref ShaderVariables vars) {
+        vars.WorldPosition = world;
+        vars.ScreenPixel = screen;
+        vars.UVCoordinates = uv;
+
+        var colour = material.Vert(vars);
+        SetPixel(screen, colour);
+    }
+
+    private void DrawLine(Vec3 worldV1, Vec3 worldV2, Vec3 v1, Vec3 v2, Vec2 uv1, Vec2 uv2, Material material, ref ShaderVariables shader, bool surface) {
+        double dist2d = Math.Sqrt((v2.X - v1.X)*(v2.X - v1.X) + (v2.Y - v1.Y)*(v2.Y - v1.Y));
+        if (dist2d != 0) {
+            double invdist = 1/ dist2d;
+            for (double i = 0; i &lt; 1; i += invdist) {
+                Vec3 world = Vec3.Lerp(worldV1, worldV2, i);
+                Vec3 pixel = Vec3.Lerp(v1, v2, i);
+                Vec2 uv = Vec2.Lerp(uv1, uv2, i);
+
+                shader.WorldPosition = world;
+                shader.ScreenPixel = pixel;
+                shader.UVCoordinates = uv;
+
+                var colour = surface ? material.Fragment(shader) : material.Edge(shader);
+                SetPixel(pixel, colour);
+            }
+        }
+    }
+
+    private void DrawFlatBottomTriangle(Vec3 worldV1, Vec3 worldV2, Vec3 worldV3, Vec3 a, Vec3 b, Vec3 c, Vec2 uva, Vec2 uvb, Vec2 uvc, Material img, ref ShaderVariables shader){
+        double invslope1 = (b.X - a.X)/(b.Y - a.Y);
+        double invslope2 = (c.X - a.X)/(c.Y - a.Y);
+
+        double leftX = Math.Floor(a.X);
+        double rightX = Math.Floor(a.X);
+
+        int startH = (int)Math.Floor(a.Y);
+        int endH = (int)Math.Floor(b.Y);
+
+        for(int scan = startH; scan &lt; endH; scan++){
+
+            //Texturing only
+            double t = (scan - startH)/(endH - startH);
+
+            Vec2 left = Vec2.Lerp(uva, uvb, t);
+            Vec2 right = Vec2.Lerp(uva, uvc, t);
+            Vec3 worldLeft = Vec3.Lerp(worldV1, worldV2, t);
+            Vec3 worldRight = Vec3.Lerp(worldV1, worldV3, t);
+
+            double zL = Lerp(a.Z, b.Z, t);
+            double zR = Lerp(a.Z, c.Z, t);
+            DrawLine(worldLeft, worldRight, new Vec3(leftX,scan,zL),new Vec3(rightX,scan,zR),left,right,img, ref shader, surface: true);
+
+            leftX += invslope1;
+            rightX += invslope2;
+        }
+    }
+    private void DrawFlatTopTriangle (Vec3 worldV1, Vec3 worldV2, Vec3 worldV3, Vec3 a, Vec3 b, Vec3 c, Vec2 uva, Vec2 uvb, Vec2 uvc, Material img, ref ShaderVariables shader){
+        double invslope1 = (c.X - a.X) / (c.Y - a.Y);
+        double invslope2 = (c.X - b.X) / (c.Y - b.Y);
+
+        double leftX = Math.Floor(c.X);
+        double rightX = Math.Floor(c.X);
+
+        int startH = (int)Math.Floor(c.Y);
+        int endH = (int)Math.Floor(a.Y);
+
+        for(int scan = startH; scan &gt; endH; scan--){
+            double t = (scan - startH)/(endH - startH);
+
+            Vec2 left = Vec2.Lerp(uvc, uva, t);
+            Vec2 right = Vec2.Lerp(uvc, uvb, t);
+            Vec3 worldLeft = Vec3.Lerp(worldV3, worldV1, t);
+            Vec3 worldRight = Vec3.Lerp(worldV3, worldV2, t);
+
+            double zL = Lerp(c.Z, a.Z, t);
+            double zR = Lerp(c.Z, b.Z, t);
+            DrawLine(worldLeft, worldRight, new Vec3(leftX,scan, zL),new Vec3(rightX,scan, zR),left,right,img, ref shader, surface: true);
+
+            leftX -= invslope1;
+            rightX -= invslope2;
+        }
+    }
+}
+
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../_light_source_8cs/" class="btn btn-neutral float-right" title="File LightSource.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../_base_camera_8cs/" class="btn btn-neutral" title="File BaseCamera.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../_base_camera_8cs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../_light_source_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

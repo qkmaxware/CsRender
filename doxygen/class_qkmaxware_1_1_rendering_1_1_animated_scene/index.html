@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_animated_scene/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Class Qkmaxware::Rendering::AnimatedScene - Qkmaxware.Rendering</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Class Qkmaxware::Rendering::AnimatedScene";
+    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_animated_scene.md";
+    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_animated_scene/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Qkmaxware.Rendering</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Welcome</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installing/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using/">Usage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../references/">References</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Qkmaxware.Rendering</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Doxygen &raquo;</li>
+        
+      
+    
+    <li>Class Qkmaxware::Rendering::AnimatedScene</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_animated_scene.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="class-qkmaxwarerenderinganimatedscene">Class Qkmaxware::Rendering::AnimatedScene</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>AnimatedScene</strong></a></p>
+<p><em>Animate all animated scene nodes across several frames</em> </p>
+<p>Inherits the following classes: IEnumerable&lt; Color[,]&gt;</p>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Type</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">TimeSpan</td>
+<td align="left"><a href="./#variable-deltatime"><strong>DeltaTime</strong></a>   = =&gt; TimeSpan.FromSeconds(1.0/<a href="./#variable-fps"><strong>FPS</strong></a>)<br><em>Time between frames</em></td>
+</tr>
+<tr>
+<td align="right">int</td>
+<td align="left"><a href="./#variable-fps"><strong>FPS</strong></a>   = = 30<br><em>Number of frames per second</em></td>
+</tr>
+<tr>
+<td align="right"><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a></td>
+<td align="left"><a href="./#variable-scene"><strong>Scene</strong></a>  <br><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><em><strong>Scene</strong></em></a> <em>being animated</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Type</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right"></td>
+<td align="left"><a href="./#function-animatedscene-12"><strong>AnimatedScene</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a> scene) <br><em>Create an animated rendering of the given scene with a default camera</em></td>
+</tr>
+<tr>
+<td align="right"></td>
+<td align="left"><a href="./#function-animatedscene-22"><strong>AnimatedScene</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>BaseCamera</strong></a> camera, <a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a> scene) <br><em>Create an animated rendering of the given scene with the given camera</em></td>
+</tr>
+<tr>
+<td align="right">IEnumerator&lt; Color[,]&gt;</td>
+<td align="left"><a href="./#function-getenumerator-12"><strong>GetEnumerator</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-deltatime">variable DeltaTime</h3>
+<pre><code class="cpp">TimeSpan Qkmaxware.Rendering.AnimatedScene.DeltaTime;
+</code></pre>
+
+<h3 id="variable-fps">variable FPS</h3>
+<pre><code class="cpp">int Qkmaxware.Rendering.AnimatedScene.FPS;
+</code></pre>
+
+<h3 id="variable-scene">variable Scene</h3>
+<pre><code class="cpp">Scene Qkmaxware.Rendering.AnimatedScene.Scene;
+</code></pre>
+
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-animatedscene-12">function AnimatedScene [1/2]</h3>
+<pre><code class="cpp">inline Qkmaxware::Rendering::AnimatedScene::AnimatedScene (
+    Scene scene
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>scene</code> scene to animate</li>
+</ul>
+<h3 id="function-animatedscene-22">function AnimatedScene [2/2]</h3>
+<pre><code class="cpp">inline Qkmaxware::Rendering::AnimatedScene::AnimatedScene (
+    BaseCamera camera,
+    Scene scene
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>camera</code> camera</li>
+<li><code>scene</code> scene to animate</li>
+</ul>
+<h3 id="function-getenumerator-12">function GetEnumerator [1/2]</h3>
+<pre><code class="cpp">inline IEnumerator&lt; Color[,]&gt; Qkmaxware::Rendering::AnimatedScene::GetEnumerator () 
+</code></pre>
+
+<hr />
+<p>The documentation for this class was generated from the following file <code>Render/src/Animation.cs</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../class_qkmaxware_1_1_rendering_1_1_animator/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::Animator">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../class_qkmaxware_1_1_rendering_1_1_angle/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::Angle"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../class_qkmaxware_1_1_rendering_1_1_angle/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_animator/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

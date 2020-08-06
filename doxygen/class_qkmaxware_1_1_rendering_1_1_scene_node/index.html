@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_scene_node/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Class Qkmaxware::Rendering::SceneNode - Qkmaxware.Rendering</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Class Qkmaxware::Rendering::SceneNode";
+    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_scene_node.md";
+    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_scene_node/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Qkmaxware.Rendering</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Welcome</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installing/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using/">Usage</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../references/">References</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Qkmaxware.Rendering</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Doxygen &raquo;</li>
+        
+      
+    
+    <li>Class Qkmaxware::Rendering::SceneNode</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_scene_node.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="class-qkmaxwarerenderingscenenode">Class Qkmaxware::Rendering::SceneNode</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>SceneNode</strong></a></p>
+<p><em>A node which exists within the scene graph</em> </p>
+<p>Inherits the following classes: IEnumerable&lt; SceneNode &gt;</p>
+<p>Inherited by the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_animator/">Qkmaxware::Rendering::Animator</a>,  <a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/">Qkmaxware::Rendering::BaseCamera</a>,  <a href="../class_qkmaxware_1_1_rendering_1_1_light_source/">Qkmaxware::Rendering::LightSource</a>,  <a href="../class_qkmaxware_1_1_rendering_1_1_renderable/">Qkmaxware::Rendering::Renderable</a></p>
+<h2 id="public-attributes">Public Attributes</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Type</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-backward"><strong>Backward</strong></a>   = =&gt; -<a href="./#variable-forward"><strong>Forward</strong></a><br><em>World aligned backwards vector</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-down"><strong>Down</strong></a>   = =&gt; -<a href="./#variable-up"><strong>Up</strong></a><br><em>World aligned down vector</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-forward"><strong>Forward</strong></a>   = =&gt; <a href="./#variable-localtoworldmatrix"><strong>LocalToWorldMatrix</strong></a> * Vec3.J<br><em>World aligned forward vector</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-left"><strong>Left</strong></a>   = =&gt; -<a href="./#variable-right"><strong>Right</strong></a><br><em>World aligned left vector</em></td>
+</tr>
+<tr>
+<td align="right">Transformation</td>
+<td align="left"><a href="./#variable-localtoworldmatrix"><strong>LocalToWorldMatrix</strong></a>   = =&gt; (Parent != null) ? Parent.LocalToWorldMatrix * this.Transform : this.Transform<br><em>Matrix to convert from local to world space</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-position"><strong>Position</strong></a>   = =&gt; <a href="./#variable-localtoworldmatrix"><strong>LocalToWorldMatrix</strong></a> * Vec3.Zero<br><em>World position of this node</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-right"><strong>Right</strong></a>   = =&gt; <a href="./#variable-localtoworldmatrix"><strong>LocalToWorldMatrix</strong></a> * Vec3.I<br><em>World aligned right vector</em></td>
+</tr>
+<tr>
+<td align="right"><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a>?</td>
+<td align="left"><a href="./#variable-scene"><strong>Scene</strong></a>   = =&gt; (Parent != null) ? Parent.Scene : this.root_scene<br><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><em><strong>Scene</strong></em></a> <em>in which this node belongs</em></td>
+</tr>
+<tr>
+<td align="right">Transformation</td>
+<td align="left"><a href="./#variable-transform"><strong>Transform</strong></a>   = = Transformation.Identity()<br><em>Local transformation matrix representing the coordinate frame for this node</em></td>
+</tr>
+<tr>
+<td align="right">Vec3</td>
+<td align="left"><a href="./#variable-up"><strong>Up</strong></a>   = =&gt; <a href="./#variable-localtoworldmatrix"><strong>LocalToWorldMatrix</strong></a> * Vec3.K<br><em>World aligned up vector</em></td>
+</tr>
+<tr>
+<td align="right">Transformation</td>
+<td align="left"><a href="./#variable-worldtolocalmatrix"><strong>WorldToLocalMatrix</strong></a>   = =&gt; LocalToWorldMatrix.Inverse<br><em>Matrix to convert from world to local space</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions">Public Functions</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Type</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-add"><strong>Add</strong></a> (<a href="./"><strong>SceneNode</strong></a> node) <br><em>Add a node to the scene graph under this node</em></td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-detach"><strong>Detach</strong></a> () <br><em>Remove this node from the scene graph</em></td>
+</tr>
+<tr>
+<td align="right">IEnumerator&lt; <a href="./"><strong>SceneNode</strong></a> &gt;</td>
+<td align="left"><a href="./#function-getenumerator-12"><strong>GetEnumerator</strong></a> () <br></td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-move"><strong>Move</strong></a> (Vec3 delta) <br><em>Move this node</em></td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-remove"><strong>Remove</strong></a> (<a href="./"><strong>SceneNode</strong></a> node) <br><em>Remove a node from the scene graph</em></td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-rotate"><strong>Rotate</strong></a> (Vec3 axis, double angle) <br><em>Rotate this coordinate frame about an axis</em></td>
+</tr>
+<tr>
+<td align="right">void</td>
+<td align="left"><a href="./#function-rotatearound"><strong>RotateAround</strong></a> (Vec3 point, Vec3 axis, double angle) <br><em>Rotate this node around a point in space</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-backward">variable Backward</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Backward;
+</code></pre>
+
+<h3 id="variable-down">variable Down</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Down;
+</code></pre>
+
+<h3 id="variable-forward">variable Forward</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Forward;
+</code></pre>
+
+<h3 id="variable-left">variable Left</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Left;
+</code></pre>
+
+<h3 id="variable-localtoworldmatrix">variable LocalToWorldMatrix</h3>
+<pre><code class="cpp">Transformation Qkmaxware.Rendering.SceneNode.LocalToWorldMatrix;
+</code></pre>
+
+<h3 id="variable-position">variable Position</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Position;
+</code></pre>
+
+<h3 id="variable-right">variable Right</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Right;
+</code></pre>
+
+<h3 id="variable-scene">variable Scene</h3>
+<pre><code class="cpp">Scene? Qkmaxware.Rendering.SceneNode.Scene;
+</code></pre>
+
+<h3 id="variable-transform">variable Transform</h3>
+<pre><code class="cpp">Transformation Qkmaxware.Rendering.SceneNode.Transform;
+</code></pre>
+
+<h3 id="variable-up">variable Up</h3>
+<pre><code class="cpp">Vec3 Qkmaxware.Rendering.SceneNode.Up;
+</code></pre>
+
+<h3 id="variable-worldtolocalmatrix">variable WorldToLocalMatrix</h3>
+<pre><code class="cpp">Transformation Qkmaxware.Rendering.SceneNode.WorldToLocalMatrix;
+</code></pre>
+
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-add">function Add</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::Add (
+    SceneNode node
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>node</code> node to add</li>
+</ul>
+<h3 id="function-detach">function Detach</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::Detach () 
+</code></pre>
+
+<h3 id="function-getenumerator-12">function GetEnumerator [1/2]</h3>
+<pre><code class="cpp">inline IEnumerator&lt; SceneNode &gt; Qkmaxware::Rendering::SceneNode::GetEnumerator () 
+</code></pre>
+
+<h3 id="function-move">function Move</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::Move (
+    Vec3 delta
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>delta</code> amount to move by</li>
+</ul>
+<h3 id="function-remove">function Remove</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::Remove (
+    SceneNode node
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>node</code> node to remove</li>
+</ul>
+<h3 id="function-rotate">function Rotate</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::Rotate (
+    Vec3 axis,
+    double angle
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>axis</code> axis to rotate</li>
+<li><code>angle</code> rotation amount</li>
+</ul>
+<h3 id="function-rotatearound">function RotateAround</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::SceneNode::RotateAround (
+    Vec3 point,
+    Vec3 axis,
+    double angle
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>point</code> point to orbit</li>
+<li><code>axis</code> axis of rotation</li>
+<li><code>angle</code> rotation amount</li>
+</ul>
+<hr />
+<p>The documentation for this class was generated from the following file <code>Render/src/SceneNode.cs</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::Skybox">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../class_qkmaxware_1_1_rendering_1_1_scene/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::Scene"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../class_qkmaxware_1_1_rendering_1_1_scene/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_skybox/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
