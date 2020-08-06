@@ -29,7 +29,10 @@ jobs:
       shell: cmd
       run: nuget source Add -Name "GitHub" -Source %GITHUB_SOURCE% -UserName %GITHUB_USERNAME% -Password %GITHUB_TOKEN%
     - name: Restore Packages
-      run: dotnet restore --configfile Render/nuget.config -s "https://nuget.pkg.github.com/qkmaxware/index.json"
+      env: 
+        GITHUB_USERNAME: qkmaxware
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: dotnet restore --configfile Render/nuget.config
     - name: Pack Nuget Package
       env:
         # Work around https://github.com/actions/setup-dotnet/issues/29
@@ -56,6 +59,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '${{ matrix.dotnet }}'
+      env: 
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: .Net Core Info
       run: dotnet --info
     - name: Restore Packages
