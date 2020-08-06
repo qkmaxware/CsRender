@@ -35,6 +35,7 @@ jobs:
           doxyfile-path: './Doxyfile'
 
       - name: Convert Doxygen
+        continue-on-error: true
         run: doxybook --input doxygen/xml --output docs/doxygen -t mkdocs --ignoreerrors true
 
       - name: Build Site
