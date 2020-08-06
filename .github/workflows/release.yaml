@@ -28,6 +28,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: cmd
       run: nuget source Add -Name "GitHub" -Source %GITHUB_SOURCE% -UserName %GITHUB_USERNAME% -Password %GITHUB_TOKEN%
+    - name: Restore Packages
+      run: |
+        cd Render
+        dotnet restore
+        cd ..
     - name: Pack Nuget Package
       env:
         # Work around https://github.com/actions/setup-dotnet/issues/29
@@ -56,6 +61,11 @@ jobs:
         dotnet-version: '${{ matrix.dotnet }}'
     - name: .Net Core Info
       run: dotnet --info
+    - name: Restore Packages
+      run: |
+        cd Render
+        dotnet restore
+        cd ..
     - name: Run Unit Tests
       run: dotnet test
       

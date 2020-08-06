@@ -21,5 +21,10 @@ jobs:
         dotnet-version: '${{ matrix.dotnet }}'
     - name: .Net Core Info
       run: dotnet --info
+    - name: Restore Packages
+      run: |
+        cd Render
+        dotnet restore
+        cd ..
     - name: Run Unit Tests
       run: dotnet test
