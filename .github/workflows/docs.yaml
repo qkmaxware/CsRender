@@ -1,0 +1,47 @@
+name: Deploy
+on:
+  push: 
+    branches: 
+    - "master"
+jobs:
+  deploy:
+    name: Deploy Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+        with:
+          submodules: "recursive"
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+
+      - name: Install Python Dependencies
+        run: |
+          python3 -m pip install --upgrade pip                # install pip
+          python3 -m pip install mkdocs                       # install mkdocs 
+          python3 -m pip install markdown-katex               # install KaTeX support
+          python3 -m pip install doxybook                     # install doxygen to markdown support
+          python3 -m pip install mkdocs-awesome-pages-plugin  # install the awsome pages plugin
+
+      - name: Generate Doxygen
+        uses: mattnotmitt/doxygen-action@v1
+        with:
+          working-directory: '.'
+          doxyfile-path: './Doxyfile'
+
+      - name: Convert Doxygen
+        run: doxybook --input doxygen/xml --output docs/doxygen -t mkdocs
+
+      - name: Build Site
+        run: mkdocs build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site

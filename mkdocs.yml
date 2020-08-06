@@ -1,0 +1,16 @@
+site_name: Qkmaxware.Rendering
+site_url: http://qkmaxware.github.io/CsRender/
+
+docs_dir: docs/
+site_dir: site/
+
+repo_name: GitHub
+repo_url: https://github.com/qkmaxware/CsRender
+
+theme: 
+  name: readthedocs
+  custom_dir: docs_theme/
+
+plugins:
+  - awesome-pages
+  - search
