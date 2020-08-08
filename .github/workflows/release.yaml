@@ -64,7 +64,7 @@ jobs:
     - name: .Net Core Info
       run: dotnet --info
     - name: Restore Packages
-      run: dotnet restore --configfile Render/nuget.config -s "https://nuget.pkg.github.com/qkmaxware/index.json"
+      run: dotnet restore --configfile Render/nuget.config
     - name: Run Unit Tests
       run: dotnet test
       
