@@ -9,22 +9,22 @@ namespace Qkmaxware.Rendering {
 /// <summary>
 /// Animated scene node
 /// </summary>
-public class Animator : SceneNode {
+public interface IAnimator {
     /// <summary>
     /// Called before update
     /// </summary>
     /// <param name="dt">time since last update</param>
-    public virtual void OnEarlyUpdate(TimeSpan dt) {}
+    void OnEarlyUpdate(TimeSpan dt) {}
     /// <summary>
     /// Called during animation update
     /// </summary>
     /// <param name="dt">time since last update</param>
-	public virtual void OnUpdate(TimeSpan dt) {}
+	void OnUpdate(TimeSpan dt) {}
     /// <summary>
     /// Called after update
     /// </summary>
     /// <param name="dt">time since last update</param>
-	public virtual void OnLateUpdate(TimeSpan dt) {}
+	void OnLateUpdate(TimeSpan dt) {}
 }
 
 /// <summary>
@@ -67,7 +67,7 @@ public class AnimatedScene : IEnumerable<Color[,]> {
 
     public IEnumerator<Color[,]> GetEnumerator() {
         while(true) {
-			var objects = Scene.OfType<Animator>();
+			var objects = Scene.OfType<IAnimator>();
 			var dt = DeltaTime;
 			foreach (var obj in objects) {
 				obj.OnEarlyUpdate(dt);

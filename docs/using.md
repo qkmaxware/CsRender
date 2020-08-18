@@ -67,21 +67,21 @@ More often then not, one would want to animate a scene and export each frame to 
 AnimatedScene animation = new AnimatedScene(camera, scene);
 ```
 
-To create animated behaviours the `Animator` scene node class can be used to apply events to scene nodes on each frame. Each `Animator` has three methods. `OnEarlyUpdate`, `OnUpdate`, and `OnLateUpdate` which are called in sequence each frame. Create a sub-class of the `Animator` to define how the animation plays. The example `Animator` below will cause the node to bob vertically up and down over time. 
+To create animated behaviours the `IAnimator` interface can be applied to SceneNode classes in order to apply events on each frame. Each `IAnimator` can choose to implement one of three methods. `OnEarlyUpdate`, `OnUpdate`, and `OnLateUpdate` which are called in sequence each frame. Create an implementor of the `IAnimator` interface to define how the animation plays. The example `IAnimator` below will cause the node to bob vertically up and down over time. 
 
 ```cs
-public class BobbingAnimator : Animator {
+public class BobbingAnimator : SceneNode, IAnimator {
     public double Amplitude = 1;
     public double SpeedFactor = 1;
     private TimeSpan playTime = TimeSpan.Zero;
 
-    public override void OnUpdate(TimeSpan dt) {
+    public void OnUpdate(TimeSpan dt) {
         playTime += SpeedFactor * dt;
 
         var old = this.Transform.Position;
-        var new = Transformation.Offset(new Vector3(old.X, old.Y, Amplitude * Math.Sin(playTime.TotalSeconds)));
+        var @new = Transformation.Offset(new Vector3(old.X, old.Y, Amplitude * Math.Sin(playTime.TotalSeconds)));
 
-        this.Transform = new;
+        this.Transform = @new;
     }
 }
 ```
