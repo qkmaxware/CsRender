@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/_animation_8cs/">
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_animator/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>File Animation.cs - Qkmaxware.Rendering</title>
+  <title>Interface Qkmaxware::Rendering::IAnimator - Qkmaxware.Rendering</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "File Animation.cs";
-    var mkdocs_page_input_path = "doxygen/_animation_8cs.md";
-    var mkdocs_page_url = "/CsRender/doxygen/_animation_8cs/";
+    var mkdocs_page_name = "Interface Qkmaxware::Rendering::IAnimator";
+    var mkdocs_page_input_path = "doxygen/interface_qkmaxware_1_1_rendering_1_1_i_animator.md";
+    var mkdocs_page_url = "/CsRender/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_animator/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -88,10 +88,10 @@
         
       
     
-    <li>File Animation.cs</li>
+    <li>Interface Qkmaxware::Rendering::IAnimator</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/_animation_8cs.md"
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_animator.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -102,10 +102,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="file-animationcs">File Animation.cs</h1>
-<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_3d93a40d3a63baa1169d25b6af232e01/"><strong>Render</strong></a> <strong>&gt;</strong> <a href="../dir_215dca11daae57d51d6f58cd4be0ab9f/"><strong>src</strong></a> <strong>&gt;</strong> <a href="./"><strong>Animation.cs</strong></a></p>
-<p><a href="../_animation_8cs_source/">Go to the source code of this file.</a></p>
-<h2 id="namespaces">Namespaces</h2>
+                <h1 id="interface-qkmaxwarerenderingianimator">Interface Qkmaxware::Rendering::IAnimator</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>IAnimator</strong></a></p>
+<p><em>Animated scene node</em> </p>
+<h2 id="public-functions">Public Functions</h2>
 <table>
 <thead>
 <tr>
@@ -115,50 +115,50 @@
 </thead>
 <tbody>
 <tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <br></td>
+<td align="right">void</td>
+<td align="left"><a href="./#function-onearlyupdate"><strong>OnEarlyUpdate</strong></a> (TimeSpan dt) <br><em>Called before update</em></td>
 </tr>
 <tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <br><em>3D Soft-rendering</em></td>
+<td align="right">void</td>
+<td align="left"><a href="./#function-onlateupdate"><strong>OnLateUpdate</strong></a> (TimeSpan dt) <br><em>Called after update</em></td>
 </tr>
 <tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_system_1_1_collections/"><strong>Collections</strong></a> <br></td>
-</tr>
-<tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_system_1_1_collections_1_1_generic/"><strong>Generic</strong></a> <br></td>
-</tr>
-<tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_system_1_1_drawing/"><strong>Drawing</strong></a> <br></td>
-</tr>
-<tr>
-<td align="right">namespace</td>
-<td align="left"><a href="../namespace_system_1_1_linq/"><strong>Linq</strong></a> <br></td>
+<td align="right">void</td>
+<td align="left"><a href="./#function-onupdate"><strong>OnUpdate</strong></a> (TimeSpan dt) <br><em>Called during animation update</em></td>
 </tr>
 </tbody>
 </table>
-<h2 id="classes">Classes</h2>
-<table>
-<thead>
-<tr>
-<th align="right">Type</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">class</td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>AnimatedScene</strong></a> <br><em>Animate all animated scene nodes across several frames</em></td>
-</tr>
-<tr>
-<td align="right">interface</td>
-<td align="left"><a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/"><strong>IAnimator</strong></a> <br><em>Animated scene node</em></td>
-</tr>
-</tbody>
-</table>
+<h2 id="public-functions-documentation">Public Functions Documentation</h2>
+<h3 id="function-onearlyupdate">function OnEarlyUpdate</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::IAnimator::OnEarlyUpdate (
+    TimeSpan dt
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>dt</code> time since last update</li>
+</ul>
+<h3 id="function-onlateupdate">function OnLateUpdate</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::IAnimator::OnLateUpdate (
+    TimeSpan dt
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>dt</code> time since last update</li>
+</ul>
+<h3 id="function-onupdate">function OnUpdate</h3>
+<pre><code class="cpp">inline void Qkmaxware::Rendering::IAnimator::OnUpdate (
+    TimeSpan dt
+) 
+</code></pre>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>dt</code> time since last update</li>
+</ul>
 <hr />
 <p>The documentation for this class was generated from the following file <code>Render/src/Animation.cs</code></p>
               
@@ -168,10 +168,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../_animation_8cs_source/" class="btn btn-neutral float-right" title="File Animation.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../interface_qkmaxware_1_1_rendering_1_1_i_uv_map/" class="btn btn-neutral float-right" title="Interface Qkmaxware::Rendering::IUvMap">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../_angle_8cs_source/" class="btn btn-neutral" title="File Angle.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../hierarchy/" class="btn btn-neutral" title="Class Hierarchy"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -199,10 +199,10 @@
           <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../_angle_8cs_source/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../hierarchy/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../_animation_8cs_source/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../interface_qkmaxware_1_1_rendering_1_1_i_uv_map/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

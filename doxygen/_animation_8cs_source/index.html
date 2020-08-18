@@ -113,10 +113,10 @@ using System.Linq;
 
 namespace Qkmaxware.Rendering {
 
-public class Animator : SceneNode {
-    public virtual void OnEarlyUpdate(TimeSpan dt) {}
-    public virtual void OnUpdate(TimeSpan dt) {}
-    public virtual void OnLateUpdate(TimeSpan dt) {}
+public interface IAnimator {
+    void OnEarlyUpdate(TimeSpan dt) {}
+    void OnUpdate(TimeSpan dt) {}
+    void OnLateUpdate(TimeSpan dt) {}
 }
 
 public class AnimatedScene : IEnumerable&lt;Color[,]&gt; {
@@ -135,7 +135,7 @@ public class AnimatedScene : IEnumerable&lt;Color[,]&gt; {
 
     public IEnumerator&lt;Color[,]&gt; GetEnumerator() {
         while(true) {
-            var objects = Scene.OfType&lt;Animator&gt;();
+            var objects = Scene.OfType&lt;IAnimator&gt;();
             var dt = DeltaTime;
             foreach (var obj in objects) {
                 obj.OnEarlyUpdate(dt);
