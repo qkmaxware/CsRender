@@ -133,6 +133,8 @@ public class SceneNode : IEnumerable&lt;SceneNode&gt; {
 
     private List&lt;SceneNode&gt; children = new List&lt;SceneNode&gt;();
 
+    public IEnumerable&lt;SceneNode&gt; Children =&gt; children.AsReadOnly();
+
     public void Add(SceneNode node) {
         // Remove from old parent
         node.Parent?.Remove(node);

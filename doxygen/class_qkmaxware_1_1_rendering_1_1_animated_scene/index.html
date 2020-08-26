@@ -106,6 +106,7 @@
 <p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>AnimatedScene</strong></a></p>
 <p><em>Animate all animated scene nodes across several frames</em> </p>
 <p>Inherits the following classes: IEnumerable&lt; Color[,]&gt;</p>
+<p>Inherited by the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/">Qkmaxware::Rendering::FixedFpsAnimatedScene</a>,  <a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/">Qkmaxware::Rendering::RealtimeAnimatedScene</a></p>
 <h2 id="public-attributes">Public Attributes</h2>
 <table>
 <thead>
@@ -115,14 +116,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="right">TimeSpan</td>
-<td align="left"><a href="./#variable-deltatime"><strong>DeltaTime</strong></a>   = =&gt; TimeSpan.FromSeconds(1.0/<a href="./#variable-fps"><strong>FPS</strong></a>)<br><em>Time between frames</em></td>
-</tr>
-<tr>
-<td align="right">int</td>
-<td align="left"><a href="./#variable-fps"><strong>FPS</strong></a>   = = 30<br><em>Number of frames per second</em></td>
-</tr>
 <tr>
 <td align="right"><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a></td>
 <td align="left"><a href="./#variable-scene"><strong>Scene</strong></a>  <br><a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><em><strong>Scene</strong></em></a> <em>being animated</em></td>
@@ -147,20 +140,27 @@
 <td align="left"><a href="./#function-animatedscene-22"><strong>AnimatedScene</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>BaseCamera</strong></a> camera, <a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a> scene) <br><em>Create an animated rendering of the given scene with the given camera</em></td>
 </tr>
 <tr>
-<td align="right">IEnumerator&lt; Color[,]&gt;</td>
+<td align="right">virtual IEnumerator&lt; Color[,]&gt;</td>
 <td align="left"><a href="./#function-getenumerator-12"><strong>GetEnumerator</strong></a> () <br></td>
 </tr>
 </tbody>
 </table>
+<h2 id="protected-functions">Protected Functions</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Type</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">virtual abstract TimeSpan</td>
+<td align="left"><a href="./#function-deltatime"><strong>DeltaTime</strong></a> () = 0<br></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
-<h3 id="variable-deltatime">variable DeltaTime</h3>
-<pre><code class="cpp">TimeSpan Qkmaxware.Rendering.AnimatedScene.DeltaTime;
-</code></pre>
-
-<h3 id="variable-fps">variable FPS</h3>
-<pre><code class="cpp">int Qkmaxware.Rendering.AnimatedScene.FPS;
-</code></pre>
-
 <h3 id="variable-scene">variable Scene</h3>
 <pre><code class="cpp">Scene Qkmaxware.Rendering.AnimatedScene.Scene;
 </code></pre>
@@ -189,7 +189,12 @@
 <li><code>scene</code> scene to animate</li>
 </ul>
 <h3 id="function-getenumerator-12">function GetEnumerator [1/2]</h3>
-<pre><code class="cpp">inline IEnumerator&lt; Color[,]&gt; Qkmaxware::Rendering::AnimatedScene::GetEnumerator () 
+<pre><code class="cpp">inline virtual IEnumerator&lt; Color[,]&gt; Qkmaxware::Rendering::AnimatedScene::GetEnumerator () 
+</code></pre>
+
+<h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
+<h3 id="function-deltatime">function DeltaTime</h3>
+<pre><code class="cpp">virtual abstract TimeSpan Qkmaxware::Rendering::AnimatedScene::DeltaTime () = 0
 </code></pre>
 
 <hr />

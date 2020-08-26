@@ -105,7 +105,8 @@
                 <h1 id="file-skyboxcs">File Skybox.cs</h1>
 <p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_3d93a40d3a63baa1169d25b6af232e01/"><strong>Render</strong></a> <strong>&gt;</strong> <a href="../dir_215dca11daae57d51d6f58cd4be0ab9f/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_skybox_8cs/"><strong>Skybox.cs</strong></a></p>
 <p><a href="../_skybox_8cs/">Go to the documentation of this file.</a> </p>
-<pre><code class="cpp">using System.Drawing;
+<pre><code class="cpp">using System;
+using System.Drawing;
 using Qkmaxware.Geometry;
 
 namespace Qkmaxware.Rendering {
@@ -113,6 +114,19 @@ namespace Qkmaxware.Rendering {
 public class Skybox {
     public virtual Color GetPixel(BaseCamera camera, int x, int y) {
         return Color.Black;
+    }
+}
+
+public class SolidSkybox : Skybox {
+    public Color Colour {get; private set;}
+    public SolidSkybox() {
+        this.Colour = Color.Black;
+    }
+    public SolidSkybox(Color colour) {
+        this.Colour = colour;
+    }
+    public override Color GetPixel(BaseCamera camera, int x, int y) {
+        return this.Colour;
     }
 }
 
@@ -134,8 +148,45 @@ public class GradientSkybox : Skybox {
     }
 
     public override Color GetPixel(BaseCamera camera, int x, int y) {
-        var interpolation_factor = camera.ScreenToWorldPoint(new Vec2(x,y)).Normalized.Z;
-        return Blend(bottom, top, interpolation_factor);
+        // Use angles from polar coorinates
+        var point = camera.ScreenToWorldPoint(new Vec2(x,y));
+        var z = point.Z;
+        var length = point.Length;
+        if (length == 0) {
+            return top;
+        } else {
+            var vangle = Math.Acos(z / length);
+            var interpolation_factor = vangle / Math.PI; // angles are 0deg to 180deg (0 to Pi radians)
+            return Blend(top, bottom, interpolation_factor);
+        }
+    }
+}
+
+public class TexturedSkybox : Skybox {
+    public Texture2D Texture {get; private set;}
+
+    public TexturedSkybox(Texture2D texture) {
+        this.Texture = texture;
+    }
+
+    public override Color GetPixel(BaseCamera camera, int x, int y) {
+        var point = camera.ScreenToWorldPoint(new Vec2(x,y));
+        var z = point.Z;
+        var length = point.Length;
+        if (length == 0)
+            return Color.White;
+
+        // Vertical angle (0 - 180deg)
+        var vangle = Math.Acos(z / length);
+        var v_interpolation_factor = vangle / Math.PI;
+        var uvy = (int)(Texture.Height * v_interpolation_factor);
+
+        // Horizontal angle (0 - 360deg)
+        var hangle = Math.Asin( point.Y / (length * Math.Sin(vangle)) ) + (Math.PI * 0.5);
+        var h_interpolation_factor = hangle / (2 * Math.PI);
+        var uvx = (int)(Texture.Width * h_interpolation_factor);
+
+        return this.Texture[uvy, uvx];
     }
 }
 
@@ -148,7 +199,7 @@ public class GradientSkybox : Skybox {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../_uv_map_8cs/" class="btn btn-neutral float-right" title="File UvMap.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../_texture_8cs/" class="btn btn-neutral float-right" title="File Texture.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../_skybox_8cs/" class="btn btn-neutral" title="File Skybox.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -182,7 +233,7 @@ public class GradientSkybox : Skybox {
         <span><a href="../_skybox_8cs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../_uv_map_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../_texture_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

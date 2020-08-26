@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_gradient_skybox/">
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_texture2_d/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Class Qkmaxware::Rendering::GradientSkybox - Qkmaxware.Rendering</title>
+  <title>Class Qkmaxware::Rendering::Texture2D - Qkmaxware.Rendering</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Class Qkmaxware::Rendering::GradientSkybox";
-    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_gradient_skybox.md";
-    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_gradient_skybox/";
+    var mkdocs_page_name = "Class Qkmaxware::Rendering::Texture2D";
+    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_texture2_d.md";
+    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_texture2_d/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -88,10 +88,10 @@
         
       
     
-    <li>Class Qkmaxware::Rendering::GradientSkybox</li>
+    <li>Class Qkmaxware::Rendering::Texture2D</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_gradient_skybox.md"
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_texture2_d.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -102,11 +102,11 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="class-qkmaxwarerenderinggradientskybox">Class Qkmaxware::Rendering::GradientSkybox</h1>
-<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>GradientSkybox</strong></a></p>
-<p><a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><em><strong>Skybox</strong></em></a> <em>with a vertical gradient</em></p>
-<p>Inherits the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/">Qkmaxware::Rendering::Skybox</a></p>
-<h2 id="public-functions">Public Functions</h2>
+                <h1 id="class-qkmaxwarerenderingtexture2d">Class Qkmaxware::Rendering::Texture2D</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>Texture2D</strong></a></p>
+<p><em>Base class for 2D textures</em> </p>
+<p>Inherited by the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_pixel_texture/">Qkmaxware::Rendering::PixelTexture</a></p>
+<h2 id="public-attributes">Public Attributes</h2>
 <table>
 <thead>
 <tr>
@@ -116,63 +116,18 @@
 </thead>
 <tbody>
 <tr>
-<td align="right">virtual override Color</td>
-<td align="left"><a href="./#function-getpixel"><strong>GetPixel</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>BaseCamera</strong></a> camera, int x, int y) <br><em>Get the skybox colour for the given camera</em></td>
-</tr>
-<tr>
-<td align="right"></td>
-<td align="left"><a href="./#function-gradientskybox"><strong>GradientSkybox</strong></a> (Color first, Color second) <br><em>Create a gradient skybox with two colours</em></td>
+<td align="right"><a href="../namespace_qkmaxware_1_1_rendering/#enum-texturewrapmode"><strong>TextureWrapMode</strong></a></td>
+<td align="left"><a href="./#variable-wrapmode"><strong>WrapMode</strong></a>   = = TextureWrapMode.Clamp<br><em>wrap mode for pixel sampling</em></td>
 </tr>
 </tbody>
 </table>
-<h2 id="public-functions-inherited-from-qkmaxwarerenderingskybox">Public Functions inherited from Qkmaxware::Rendering::Skybox</h2>
-<p>See <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/">Qkmaxware::Rendering::Skybox</a></p>
-<table>
-<thead>
-<tr>
-<th align="right">Type</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">virtual Color</td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_skybox/#function-getpixel"><strong>GetPixel</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>BaseCamera</strong></a> camera, int x, int y) <br><em>Get the skybox colour for the given camera</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-getpixel">function GetPixel</h3>
-<pre><code class="cpp">inline virtual override Color Qkmaxware::Rendering::GradientSkybox::GetPixel (
-    BaseCamera camera,
-    int x,
-    int y
-) 
+<h2 id="public-attributes-documentation">Public Attributes Documentation</h2>
+<h3 id="variable-wrapmode">variable WrapMode</h3>
+<pre><code class="cpp">TextureWrapMode Qkmaxware.Rendering.Texture2D.WrapMode;
 </code></pre>
 
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>camera</code> camera</li>
-<li><code>x</code> pixel x</li>
-<li><code>y</code> pixel y</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>skybox color for camera pixel</p>
-<p>Implements <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/#function-getpixel"><em>Qkmaxware::Rendering::Skybox::GetPixel</em></a></p>
-<h3 id="function-gradientskybox">function GradientSkybox</h3>
-<pre><code class="cpp">inline Qkmaxware::Rendering::GradientSkybox::GradientSkybox (
-    Color first,
-    Color second
-) 
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>first</code> colour at the bottom</li>
-<li><code>second</code> colour at the top</li>
-</ul>
 <hr />
-<p>The documentation for this class was generated from the following file <code>Render/src/Skybox.cs</code></p>
+<p>The documentation for this class was generated from the following file <code>Render/src/Texture.cs</code></p>
               
             </div>
           </div>
@@ -180,10 +135,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../class_qkmaxware_1_1_rendering_1_1_light_source/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::LightSource">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::TexturedMaterial">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::FixedFpsAnimatedScene"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../class_qkmaxware_1_1_rendering_1_1_solid_skybox/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::SolidSkybox"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -211,10 +166,10 @@
           <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../class_qkmaxware_1_1_rendering_1_1_solid_skybox/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_light_source/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

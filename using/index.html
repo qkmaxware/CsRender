@@ -172,6 +172,10 @@ using (var writer = new BinaryWriter(&quot;myrender.tga&quot;, FileMode.Create))
 <td>Position of the pixel in world space</td>
 </tr>
 <tr>
+<td>WorldNormal</td>
+<td>Normal vector of the face in world space</td>
+</tr>
+<tr>
 <td>WorldCameraPosition</td>
 <td>Position of the camera in world space</td>
 </tr>
@@ -190,11 +194,11 @@ using (var writer = new BinaryWriter(&quot;myrender.tga&quot;, FileMode.Create))
 </tbody>
 </table>
 <h2 id="animated-scenes">Animated Scenes</h2>
-<p>More often then not, one would want to animate a scene and export each frame to file or to an animation. This starts from the <code>AnimatedScene</code> class which allows for one to enumerate through animations frame by frame. Assigning to the FPS property of the animation will adjust how animated behaviours move between frames.</p>
-<pre><code class="cs">AnimatedScene animation = new AnimatedScene(camera, scene);
+<p>More often then not, one would want to animate a scene and export each frame to file or to an animation. This starts from the <code>AnimatedScene</code> base class which allows for one to enumerate through animations frame by frame. The <code>FixedFpsAnimatedScene</code> uses a pre-asigned FPS property to determine how much time occurs between frames whereas the <code>RealtimeAnimatedScene</code> computes the amount of real time between successive renders. </p>
+<pre><code class="cs">FixedFpsAnimatedScene animation = new FixedFpsAnimatedScene(camera, scene);
 </code></pre>
 
-<p>To create animated behaviours the <code>IAnimator</code> interface can be applied to SceneNode classes in order to apply events on each frame. Each <code>IAnimator</code> can choose to implement one of three methods. <code>OnEarlyUpdate</code>, <code>OnUpdate</code>, and <code>OnLateUpdate</code> which are called in sequence each frame. Create an implementor of the <code>IAnimator</code> interface to define how the animation plays. The example <code>IAnimator</code> below will cause the node to bob vertically up and down over time. </p>
+<p>To create animated behaviours the <code>IAnimator</code> interface can be applied to SceneNode classes in order to apply events on each frame. Each <code>IAnimator</code> can choose to implement one of three methods. <code>OnEarlyUpdate</code>, <code>OnUpdate</code>, and <code>OnLateUpdate</code> which are called in sequence each frame. Additionally one can implement the <code>OnStart</code> method which is run when the animation first starts. Create an implementor of the <code>IAnimator</code> interface to define how the animation plays. The example <code>IAnimator</code> below will cause the node to bob vertically up and down over time. </p>
 <pre><code class="cs">public class BobbingAnimator : SceneNode, IAnimator {
     public double Amplitude = 1;
     public double SpeedFactor = 1;
@@ -220,7 +224,7 @@ scene.Add(bobber);
 <pre><code class="cs">TgaSerializer serializer = new TgaSerializer();
 var frameId = 0;
 
-// Save 30 frames of the animation to file
+// Save 30 frames of the animation to files
 foreach (var frame in animation.Take(30)) {
     using (var writer = new BinaryWriter($&quot;render.{frameId++}.tga&quot;, FileMode.Create))) {
         serializer.Serialize(writer, frame.GetSampler());

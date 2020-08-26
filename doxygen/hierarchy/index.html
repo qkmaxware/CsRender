@@ -117,6 +117,10 @@
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_wireframe/"><strong>Qkmaxware::Rendering::Wireframe</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_material/"><em><strong>Material</strong></em></a> <em>for wireframe objects</em></li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><strong>Qkmaxware::Rendering::Skybox</strong></a> <em>Base class for rendering a skybox</em>   </li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_gradient_skybox/"><strong>Qkmaxware::Rendering::GradientSkybox</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><em><strong>Skybox</strong></em></a> <em>with a vertical gradient</em></li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_solid_skybox/"><strong>Qkmaxware::Rendering::SolidSkybox</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><em><strong>Skybox</strong></em></a> <em>with a solid user defined colour</em></li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_textured_skybox/"><strong>Qkmaxware::Rendering::TexturedSkybox</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><em><strong>Skybox</strong></em></a> <em>with a wrapped 3d texture</em></li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_texture2_d/"><strong>Qkmaxware::Rendering::Texture2D</strong></a> <em>Base class for 2D textures</em>   </li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_pixel_texture/"><strong>Qkmaxware::Rendering::PixelTexture</strong></a> <em>2D texture defined by pixel colours</em> </li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_resolutions/"><strong>Qkmaxware::Rendering::Resolutions</strong></a> <em>Common resolution sizes</em> </li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_resolutions_1_1_aspect16x10/"><strong>Qkmaxware::Rendering::Resolutions::Aspect16x10</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_resolutions/"><em><strong>Resolutions</strong></em></a> <em>with a 16 x 10 aspect ratio</em></li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_resolutions_1_1_aspect16x9/"><strong>Qkmaxware::Rendering::Resolutions::Aspect16x9</strong></a> <a href="../class_qkmaxware_1_1_rendering_1_1_resolutions/"><em><strong>Resolutions</strong></em></a> <em>with a 16 x 9 aspect ratio</em></li>
@@ -198,7 +202,21 @@
 </ul>
 </li>
 <li><strong>class</strong> <strong>IEnumerable&lt; Color[,]&gt;</strong>  </li>
-<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a> <em>Animate all animated scene nodes across several frames</em> </li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a> <em>Animate all animated scene nodes across several frames</em>   <ul>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/"><strong>Qkmaxware::Rendering::FixedFpsAnimatedScene</strong></a> <em>Animated scene where the time between frames is fixed</em> </li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/"><strong>Qkmaxware::Rendering::RealtimeAnimatedScene</strong></a> <em>Animated scene where the time between frames is determined by the delay between calls to Camera.Render</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a> <em>Animate all animated scene nodes across several frames</em>   <ul>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/"><strong>Qkmaxware::Rendering::FixedFpsAnimatedScene</strong></a> <em>Animated scene where the time between frames is fixed</em> </li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/"><strong>Qkmaxware::Rendering::RealtimeAnimatedScene</strong></a> <em>Animated scene where the time between frames is determined by the delay between calls to Camera.Render</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a> <em>Animate all animated scene nodes across several frames</em>   <ul>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/"><strong>Qkmaxware::Rendering::FixedFpsAnimatedScene</strong></a> <em>Animated scene where the time between frames is fixed</em> </li>
+<li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/"><strong>Qkmaxware::Rendering::RealtimeAnimatedScene</strong></a> <em>Animated scene where the time between frames is determined by the delay between calls to Camera.Render</em> </li>
+</ul>
+</li>
 <li><strong>class</strong> <strong>IEnumerable&lt; Vec2 &gt;</strong>  </li>
 <li><strong>class</strong> <a href="../class_qkmaxware_1_1_rendering_1_1_u_v/"><strong>Qkmaxware::Rendering::UV</strong></a> <em>Mapping of vertices to 2D</em> <a href="../class_qkmaxware_1_1_rendering_1_1_u_v/"><em><strong>UV</strong></em></a> <em>coordinates</em></li>
 </ul>

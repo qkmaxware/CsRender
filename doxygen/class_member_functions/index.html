@@ -118,12 +118,13 @@
 <ul>
 <li><strong>ClearDepth</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
 <li><strong>ClearPixels</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
-<li><strong>Clamp</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/"><strong>Qkmaxware::Rendering::TexturedMaterial</strong></a>)</li>
+<li><strong>Clamp</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_pixel_texture/"><strong>Qkmaxware::Rendering::PixelTexture</strong></a>)</li>
 <li><strong>ColourSample</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/"><strong>Qkmaxware::Rendering::TexturedMaterial</strong></a>)</li>
 </ul>
 <h2 id="d">d</h2>
 <ul>
 <li><strong>Direction</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_ambient_light/"><strong>Qkmaxware::Rendering::AmbientLight</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_light_source/"><strong>Qkmaxware::Rendering::LightSource</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_point_light/"><strong>Qkmaxware::Rendering::PointLight</strong></a>)</li>
+<li><strong>DeltaTime</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/"><strong>Qkmaxware::Rendering::FixedFpsAnimatedScene</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/"><strong>Qkmaxware::Rendering::RealtimeAnimatedScene</strong></a>)</li>
 <li><strong>Dirty</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/"><strong>Qkmaxware::Rendering::PerspectiveCamera</strong></a>)</li>
 <li><strong>DrawFlatBottomTriangle</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
 <li><strong>DrawFlatTopTriangle</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
@@ -141,11 +142,12 @@
 <h2 id="f">f</h2>
 <ul>
 <li><strong>Fragment</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_diffuse_colour/"><strong>Qkmaxware::Rendering::DiffuseColour</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_diffuse_texture/"><strong>Qkmaxware::Rendering::DiffuseTexture</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_material/"><strong>Qkmaxware::Rendering::Material</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_unlit_colour/"><strong>Qkmaxware::Rendering::UnlitColour</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_unlit_texture/"><strong>Qkmaxware::Rendering::UnlitTexture</strong></a>)</li>
+<li><strong>FixedFpsAnimatedScene</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_fixed_fps_animated_scene/"><strong>Qkmaxware::Rendering::FixedFpsAnimatedScene</strong></a>)</li>
 </ul>
 <h2 id="g">g</h2>
 <ul>
 <li><strong>GetEnumerator</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/"><strong>Qkmaxware::Rendering::AnimatedScene</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Qkmaxware::Rendering::Scene</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_scene_node/"><strong>Qkmaxware::Rendering::SceneNode</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_u_v/"><strong>Qkmaxware::Rendering::UV</strong></a>)</li>
-<li><strong>GetPixel</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_gradient_skybox/"><strong>Qkmaxware::Rendering::GradientSkybox</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><strong>Qkmaxware::Rendering::Skybox</strong></a>)</li>
+<li><strong>GetPixel</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_gradient_skybox/"><strong>Qkmaxware::Rendering::GradientSkybox</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_skybox/"><strong>Qkmaxware::Rendering::Skybox</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_solid_skybox/"><strong>Qkmaxware::Rendering::SolidSkybox</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_textured_skybox/"><strong>Qkmaxware::Rendering::TexturedSkybox</strong></a>)</li>
 <li><strong>GradientSkybox</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_gradient_skybox/"><strong>Qkmaxware::Rendering::GradientSkybox</strong></a>)</li>
 </ul>
 <h2 id="i">i</h2>
@@ -165,16 +167,19 @@
 <ul>
 <li><strong>OnEarlyUpdate</strong> (<a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/"><strong>Qkmaxware::Rendering::IAnimator</strong></a>)</li>
 <li><strong>OnLateUpdate</strong> (<a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/"><strong>Qkmaxware::Rendering::IAnimator</strong></a>)</li>
+<li><strong>OnStart</strong> (<a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/"><strong>Qkmaxware::Rendering::IAnimator</strong></a>)</li>
 <li><strong>OnUpdate</strong> (<a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/"><strong>Qkmaxware::Rendering::IAnimator</strong></a>)</li>
 </ul>
 <h2 id="p">p</h2>
 <ul>
 <li><strong>PerspectiveCamera</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/"><strong>Qkmaxware::Rendering::PerspectiveCamera</strong></a>)</li>
+<li><strong>PixelTexture</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_pixel_texture/"><strong>Qkmaxware::Rendering::PixelTexture</strong></a>)</li>
 </ul>
 <h2 id="r">r</h2>
 <ul>
 <li><strong>Rasterize</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
 <li><strong>Render</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
+<li><strong>RealtimeAnimatedScene</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_realtime_animated_scene/"><strong>Qkmaxware::Rendering::RealtimeAnimatedScene</strong></a>)</li>
 <li><strong>Renderable</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_renderable/"><strong>Qkmaxware::Rendering::Renderable</strong></a>)</li>
 <li><strong>Remove</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Qkmaxware::Rendering::Scene</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_scene_node/"><strong>Qkmaxware::Rendering::SceneNode</strong></a>)</li>
 <li><strong>Rotate</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_scene_node/"><strong>Qkmaxware::Rendering::SceneNode</strong></a>)</li>
@@ -186,12 +191,14 @@
 <li><strong>ScreenToWorldPoint</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/"><strong>Qkmaxware::Rendering::PerspectiveCamera</strong></a>)</li>
 <li><strong>SetClippingDistance</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
 <li><strong>SetPixel</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>)</li>
+<li><strong>SolidSkybox</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_solid_skybox/"><strong>Qkmaxware::Rendering::SolidSkybox</strong></a>)</li>
 <li><strong>Spherical</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_u_v/"><strong>Qkmaxware::Rendering::UV</strong></a>)</li>
 </ul>
 <h2 id="t">t</h2>
 <ul>
 <li><strong>ToScreenSpace</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/"><strong>Qkmaxware::Rendering::PerspectiveCamera</strong></a>)</li>
 <li><strong>TexturedMaterial</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/"><strong>Qkmaxware::Rendering::TexturedMaterial</strong></a>)</li>
+<li><strong>TexturedSkybox</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_textured_skybox/"><strong>Qkmaxware::Rendering::TexturedSkybox</strong></a>)</li>
 <li><strong>ToSpherical</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_u_v/"><strong>Qkmaxware::Rendering::UV</strong></a>)</li>
 </ul>
 <h2 id="u">u</h2>
@@ -207,7 +214,7 @@
 <h2 id="w">w</h2>
 <ul>
 <li><strong>WorldToScreenPoint</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/"><strong>Qkmaxware::Rendering::BaseCamera</strong></a>, <a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/"><strong>Qkmaxware::Rendering::PerspectiveCamera</strong></a>)</li>
-<li><strong>Wrap</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/"><strong>Qkmaxware::Rendering::TexturedMaterial</strong></a>)</li>
+<li><strong>Wrap</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_pixel_texture/"><strong>Qkmaxware::Rendering::PixelTexture</strong></a>)</li>
 <li><strong>Wireframe</strong> (<a href="../class_qkmaxware_1_1_rendering_1_1_wireframe/"><strong>Qkmaxware::Rendering::Wireframe</strong></a>)</li>
 </ul>
               

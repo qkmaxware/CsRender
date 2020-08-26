@@ -166,14 +166,14 @@ public class UV : IUvMap, IEnumerable&lt;Vec2&gt; {
     }
 
     public Vec2 this[Vec3 vec] {
-    get {
-        if (uvs.ContainsKey(vec)) {
-            return uvs[vec];
-        } else {
-            return Vec2.Zero;
+        get {
+            if (uvs.ContainsKey(vec)) {
+                return uvs[vec];
+            } else {
+                return Vec2.Zero;
+            }
         }
     }
-}
 
 }
 

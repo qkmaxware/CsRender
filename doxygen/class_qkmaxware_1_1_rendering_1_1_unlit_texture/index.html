@@ -117,12 +117,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="right">Color[,]</td>
+<td align="right"><a href="../class_qkmaxware_1_1_rendering_1_1_texture2_d/"><strong>Texture2D</strong></a></td>
 <td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#variable-texture"><strong>Texture</strong></a>  <br></td>
-</tr>
-<tr>
-<td align="right"><a href="../namespace_qkmaxware_1_1_rendering/#enum-texturewrapmode"><strong>TextureWrapMode</strong></a></td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#variable-wrapmode"><strong>WrapMode</strong></a>   = = TextureWrapMode.Clamp<br></td>
 </tr>
 </tbody>
 </table>
@@ -161,7 +157,7 @@
 </tr>
 <tr>
 <td align="right"></td>
-<td align="left"><a href="./#function-unlittexture"><strong>UnlitTexture</strong></a> (Color texture, <a href="../namespace_qkmaxware_1_1_rendering/#enum-texturewrapmode"><strong>TextureWrapMode</strong></a> wrap=TextureWrapMode.Clamp) <br></td>
+<td align="left"><a href="./#function-unlittexture"><strong>UnlitTexture</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_texture2_d/"><strong>Texture2D</strong></a> texture) <br></td>
 </tr>
 </tbody>
 </table>
@@ -177,7 +173,7 @@
 <tbody>
 <tr>
 <td align="right"></td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#function-texturedmaterial"><strong>TexturedMaterial</strong></a> (Color texture, <a href="../namespace_qkmaxware_1_1_rendering/#enum-texturewrapmode"><strong>TextureWrapMode</strong></a> wrap=TextureWrapMode.Clamp) <br><em>Create a textured material with the given texture and sampling mode</em></td>
+<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#function-texturedmaterial"><strong>TexturedMaterial</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_texture2_d/"><strong>Texture2D</strong></a> texture) <br><em>Create a textured material with the given texture and sampling mode</em></td>
 </tr>
 </tbody>
 </table>
@@ -202,26 +198,6 @@
 <tr>
 <td align="right">virtual Color</td>
 <td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_material/#function-vert"><strong>Vert</strong></a> (<a href="../struct_qkmaxware_1_1_rendering_1_1_shader_variables/"><strong>ShaderVariables</strong></a> variables) <br><em>Shader to apply to each vertex</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-attributes-inherited-from-qkmaxwarerenderingtexturedmaterial">Protected Attributes inherited from Qkmaxware::Rendering::TexturedMaterial</h2>
-<p>See <a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/">Qkmaxware::Rendering::TexturedMaterial</a></p>
-<table>
-<thead>
-<tr>
-<th align="right">Type</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">int</td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#variable-textureheight"><strong>TextureHeight</strong></a>   = =&gt; Texture.GetLength(0)<br></td>
-</tr>
-<tr>
-<td align="right">int</td>
-<td align="left"><a href="../class_qkmaxware_1_1_rendering_1_1_textured_material/#variable-texturewidth"><strong>TextureWidth</strong></a>   = =&gt; Texture.GetLength(1)<br></td>
 </tr>
 </tbody>
 </table>
@@ -270,8 +246,7 @@
 <p>Implements <a href="../class_qkmaxware_1_1_rendering_1_1_material/#function-fragment"><em>Qkmaxware::Rendering::Material::Fragment</em></a></p>
 <h3 id="function-unlittexture">function UnlitTexture</h3>
 <pre><code class="cpp">inline Qkmaxware::Rendering::UnlitTexture::UnlitTexture (
-    Color texture,
-    TextureWrapMode wrap=TextureWrapMode.Clamp
+    Texture2D texture
 ) 
 </code></pre>
 

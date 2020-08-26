@@ -144,52 +144,23 @@ public class UnlitColour : Material {
     }
 }
 
-public enum TextureWrapMode {
-    Clamp,
-    Repeat,
-}
-
 public class TexturedMaterial : Material {
-    public Color[,] Texture;
-    public TextureWrapMode WrapMode = TextureWrapMode.Clamp;
+    public Texture2D Texture;
 
-    protected int TextureHeight =&gt; Texture.GetLength(0);
-    protected int TextureWidth =&gt; Texture.GetLength(1);
-
-    public TexturedMaterial(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) {
+    public TexturedMaterial(Texture2D texture) {
         this.Texture = texture;
-        this.WrapMode = wrap;
-    }
-
-    private int Wrap(int x, int x_min, int x_max) {
-        return (((x - x_min) % (x_max - x_min)) + (x_max - x_min)) % (x_max - x_min) + x_min;
-    }
-    private int Clamp(int x, int x_min, int x_max) {
-        return x &lt; x_min ? x_min : (x &gt; x_max ? x_max : x);
     }
 
     protected Color ColourSample(Vec2 uv) {
-        var uvx = (int)(uv.X * TextureWidth);
-        var uvy = (int)(uv.Y * TextureHeight);
+        var uvx = (int)(uv.X * Texture.Width);
+        var uvy = (int)(uv.Y * Texture.Height);
 
-        switch (WrapMode) {
-            case TextureWrapMode.Repeat:
-                uvx = Wrap(uvx, 0, TextureWidth - 1);
-                uvy = Wrap(uvy, 0, TextureHeight - 1);
-                break;
-            case TextureWrapMode.Clamp:
-            default:
-                uvx = Clamp(uvx, 0, TextureWidth - 1);
-                uvy = Clamp(uvy, 0, TextureHeight - 1);
-                break;
-        }
-
-        return Texture[uvy, uvx];
+        return Texture[uvx, uvy];
     }
 }
 
 public class UnlitTexture : TexturedMaterial {
-    public UnlitTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+    public UnlitTexture(Texture2D texture) : base(texture) {}
 
     public override Color Edge(ShaderVariables variables) {
         return Fragment(variables);
@@ -242,7 +213,7 @@ public class DiffuseTexture : TexturedMaterial {
     public Color Colour = Color.White;
     public double Albedo = 1;
 
-    public DiffuseTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+    public DiffuseTexture(Texture2D texture) : base(texture) {}
 
     private Color Darken(Color colour, double shade) {
         double r = shade * colour.R;
