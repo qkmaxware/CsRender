@@ -94,14 +94,14 @@ public class UV : IUvMap, IEnumerable<Vec2> {
     /// </summary>
     /// <value>UV coordinate or zero if it does not exist</value>
     public Vec2 this[Vec3 vec] {
-    get {
-        if (uvs.ContainsKey(vec)) {
-            return uvs[vec];
-        } else {
-            return Vec2.Zero;
+        get {
+            if (uvs.ContainsKey(vec)) {
+                return uvs[vec];
+            } else {
+                return Vec2.Zero;
+            }
         }
     }
-}
 
 }
 

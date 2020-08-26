@@ -64,6 +64,9 @@ public class RenderingTest {
         camera.Transform = Transformation.Offset(new Vec3(0, -5, 0));
         var scene = new Scene();
 
+        // Set the skybox
+        camera.Skybox = new GradientSkybox(Color.FromArgb (255, 58, 58, 82), Color.FromArgb (255, 2, 1, 17));
+
         // Create objects
         var planet = new Geometry.Primitives.Sphere(radius: 1, centre: Vec3.Zero, horizontalResolution: 32, verticalResolution: 32);
         var planetTexture = LoadImage("assets/planet.png");
@@ -74,15 +77,15 @@ public class RenderingTest {
         var hierarchy = new SceneNode();
         scene.Add(hierarchy);
 
-        var planetObj = new Renderable(mesh: planet, uv: UV.Spherical(planet), material: new UnlitTexture(planetTexture, TextureWrapMode.Clamp));
+        var planetObj = new Renderable(mesh: planet, uv: UV.Spherical(planet), material: new UnlitTexture(planetTexture));
         hierarchy.Add(planetObj);
 
-        var satelliteObj = new Renderable(mesh: satellite, uv: UV.Spherical(satellite), material: new UnlitTexture(satelliteTexture, TextureWrapMode.Clamp)); 
+        var satelliteObj = new Renderable(mesh: satellite, uv: UV.Spherical(satellite), material: new UnlitTexture(satelliteTexture)); 
         satelliteObj.Transform = Transformation.Offset(new Vec3(-1.6, 1.6, 0.1));
         hierarchy.Add(satelliteObj);
 
         // Render
-        SaveAnimation("render.complex", SpinAnimation(camera, hierarchy, frames: 32));
+        SaveAnimation("render.complex", SpinAnimation(camera, hierarchy, frames: 64));
     }
 
     private IEnumerable<IColourSampler> SpinAnimation (BaseCamera camera, SceneNode spinnable, int frames = 16) {
@@ -123,7 +126,7 @@ public class RenderingTest {
         }
     }
 
-    private Color[,] LoadImage(string image) {
+    private Texture2D LoadImage(string image) {
         Bitmap bmp = new Bitmap("../../../"+image);
         var pixels = new Color[bmp.Height,bmp.Width];
         for (var row = 0; row < bmp.Height; row++) {
@@ -131,7 +134,7 @@ public class RenderingTest {
                 pixels[row, col] = bmp.GetPixel(col, row);
             }
         }
-        return pixels;
+        return new PixelTexture(pixels);
     }
 }
 

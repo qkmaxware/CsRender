@@ -11,6 +11,10 @@ namespace Qkmaxware.Rendering {
 /// </summary>
 public interface IAnimator {
     /// <summary>
+    /// Called at the start of an animation
+    /// </summary>
+    void OnStart() {}
+    /// <summary>
     /// Called before update
     /// </summary>
     /// <param name="dt">time since last update</param>
@@ -30,7 +34,7 @@ public interface IAnimator {
 /// <summary>
 /// Animate all animated scene nodes across several frames
 /// </summary>
-public class AnimatedScene : IEnumerable<Color[,]> {
+public abstract class AnimatedScene : IEnumerable<Color[,]> {
 
     /// <summary>
     /// Scene being animated
@@ -40,15 +44,10 @@ public class AnimatedScene : IEnumerable<Color[,]> {
     /// Camera used for rendering animation
     /// </summary>
 	public BaseCamera Camera {get; private set;}
-    /// <summary>
-    /// Number of frames per second
-    /// </summary>
-	public int FPS = 30;
-    /// <summary>
-    /// Time between frames
-    /// </summary>
-	public TimeSpan DeltaTime => TimeSpan.FromSeconds(1.0/FPS);
 	
+    
+    protected abstract TimeSpan DeltaTime();
+
     /// <summary>
     /// Create an animated rendering of the given scene with a default camera
     /// </summary>
@@ -65,10 +64,19 @@ public class AnimatedScene : IEnumerable<Color[,]> {
         this.Scene = scene;
 	}
 
-    public IEnumerator<Color[,]> GetEnumerator() {
+    public virtual IEnumerator<Color[,]> GetEnumerator() {
+        // First render
+        var initialObjects = Scene.OfType<IAnimator>();
+        foreach (var obj in initialObjects) {
+            obj.OnStart();
+        }
+        Camera.Render(Scene);
+        yield return Camera.PixelBuffer;
+
+        // Subsequent render loop
         while(true) {
 			var objects = Scene.OfType<IAnimator>();
-			var dt = DeltaTime;
+			var dt = this.DeltaTime();
 			foreach (var obj in objects) {
 				obj.OnEarlyUpdate(dt);
 			}
@@ -85,6 +93,44 @@ public class AnimatedScene : IEnumerable<Color[,]> {
 
     IEnumerator IEnumerable.GetEnumerator() {
         return GetEnumerator();
+    }
+}
+
+/// <summary>
+/// Animated scene where the time between frames is fixed
+/// </summary>
+public class FixedFpsAnimatedScene : AnimatedScene {
+    /// <summary>
+    /// Number of frames per second
+    /// </summary>
+	public int FPS = 30;
+
+    public FixedFpsAnimatedScene(Scene scene, int fps = 30) : base(scene) {
+        this.FPS = fps;
+    }
+
+    public FixedFpsAnimatedScene(BaseCamera camera, Scene scene, int fps = 30) : base(camera, scene) {
+        this.FPS = fps;
+    }
+
+    protected override TimeSpan DeltaTime() {
+        return TimeSpan.FromSeconds(1.0/FPS);
+    }
+}
+
+/// <summary>
+/// Animated scene where the time between frames is determined by the delay between calls to Camera.Render
+/// </summary>
+public class RealtimeAnimatedScene : AnimatedScene {
+    public RealtimeAnimatedScene(Scene scene) : base(scene) {}
+    public RealtimeAnimatedScene(BaseCamera camera, Scene scene) : base(camera, scene) {}
+
+    private DateTime lastFrame = DateTime.Now;
+    protected override TimeSpan DeltaTime() {
+        var now = DateTime.Now;
+        var dt = now - lastFrame;
+        lastFrame = now;
+        return dt;
     }
 }
 

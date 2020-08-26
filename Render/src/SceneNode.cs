@@ -67,7 +67,15 @@ public class SceneNode : IEnumerable<SceneNode> {
     /// </summary>
     public Transformation WorldToLocalMatrix => LocalToWorldMatrix.Inverse;
 
+    /// <summary>
+    /// Private container for managing all direct children
+    /// </summary>
     private List<SceneNode> children = new List<SceneNode>();
+
+    /// <summary>
+    /// All direct children of this scene node
+    /// </summary>
+    public IEnumerable<SceneNode> Children => children.AsReadOnly();
 
     /// <summary>
     /// Add a node to the scene graph under this node

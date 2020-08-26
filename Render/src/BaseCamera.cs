@@ -27,7 +27,7 @@ public abstract class BaseCamera : SceneNode {
     /// <summary>
     /// Background skybox
     /// </summary>  
-    public Skybox Skybox {get; private set;} = new Skybox();
+    public Skybox Skybox {get; set;} = new Skybox();
 
     protected readonly double focallength = 1;
     protected double nearClipDistance = 0.1;
@@ -219,8 +219,8 @@ public abstract class BaseCamera : SceneNode {
     }
 
     private void SetPixel(Vec3 pixel, Color c) {
-        var x = (int)pixel.X;
-        var y = (int)pixel.Y;
+        var x = (int)Math.Floor(pixel.X);
+        var y = (int)Math.Floor(pixel.Y);
         var depth = pixel.Z;
 
         if (x >= 0 && y >= 0 && x < Size.Width && y < Size.Height) {

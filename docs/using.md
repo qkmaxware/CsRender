@@ -55,19 +55,20 @@ Shader variables can be used to help determine what colour should be returned fr
 | ModelToWorld | Matrix from the current object being rendered to world space |
 | WorldToModel | Matrix from world space to the current object being rendered |
 | WorldPosition | Position of the pixel in world space |
+| WorldNormal | Normal vector of the face in world space |
 | WorldCameraPosition | Position of the camera in world space |
 | ScreenPixel | Position of the pixel on screen being pushed to |
 | UVCoordinates | Coordinates for UV mapping the current pixel |
 | LightSources | Currently active light sources in the scene to account for when rendering |
 
 ## Animated Scenes
-More often then not, one would want to animate a scene and export each frame to file or to an animation. This starts from the `AnimatedScene` class which allows for one to enumerate through animations frame by frame. Assigning to the FPS property of the animation will adjust how animated behaviours move between frames.
+More often then not, one would want to animate a scene and export each frame to file or to an animation. This starts from the `AnimatedScene` base class which allows for one to enumerate through animations frame by frame. The `FixedFpsAnimatedScene` uses a pre-asigned FPS property to determine how much time occurs between frames whereas the `RealtimeAnimatedScene` computes the amount of real time between successive renders. 
 
 ```cs
-AnimatedScene animation = new AnimatedScene(camera, scene);
+FixedFpsAnimatedScene animation = new FixedFpsAnimatedScene(camera, scene);
 ```
 
-To create animated behaviours the `IAnimator` interface can be applied to SceneNode classes in order to apply events on each frame. Each `IAnimator` can choose to implement one of three methods. `OnEarlyUpdate`, `OnUpdate`, and `OnLateUpdate` which are called in sequence each frame. Create an implementor of the `IAnimator` interface to define how the animation plays. The example `IAnimator` below will cause the node to bob vertically up and down over time. 
+To create animated behaviours the `IAnimator` interface can be applied to SceneNode classes in order to apply events on each frame. Each `IAnimator` can choose to implement one of three methods. `OnEarlyUpdate`, `OnUpdate`, and `OnLateUpdate` which are called in sequence each frame. Additionally one can implement the `OnStart` method which is run when the animation first starts. Create an implementor of the `IAnimator` interface to define how the animation plays. The example `IAnimator` below will cause the node to bob vertically up and down over time. 
 
 ```cs
 public class BobbingAnimator : SceneNode, IAnimator {
@@ -98,7 +99,7 @@ To export animations, simple iterate over the frames of the animation that you w
 TgaSerializer serializer = new TgaSerializer();
 var frameId = 0;
 
-// Save 30 frames of the animation to file
+// Save 30 frames of the animation to files
 foreach (var frame in animation.Take(30)) {
     using (var writer = new BinaryWriter($"render.{frameId++}.tga", FileMode.Create))) {
         serializer.Serialize(writer, frame.GetSampler());

@@ -88,38 +88,18 @@ public class UnlitColour : Material {
 }
 
 /// <summary>
-/// Texture wrapping mode
-/// </summary>
-public enum TextureWrapMode {
-    Clamp,
-    Repeat,
-}
-
-/// <summary>
 /// Base class for a material with a single texture
 /// </summary>
 public class TexturedMaterial : Material {
-    public Color[,] Texture;
-    public TextureWrapMode WrapMode = TextureWrapMode.Clamp;
-
-    protected int TextureHeight => Texture.GetLength(0);
-    protected int TextureWidth => Texture.GetLength(1);
+    public Texture2D Texture;
 
     /// <summary>
     /// Create a textured material with the given texture and sampling mode
     /// </summary>
     /// <param name="texture">texture</param>
     /// <param name="wrap">texturing sampling mode</param>
-    public TexturedMaterial(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) {
+    public TexturedMaterial(Texture2D texture) {
         this.Texture = texture;
-        this.WrapMode = wrap;
-    }
-
-    private int Wrap(int x, int x_min, int x_max) {
-        return (((x - x_min) % (x_max - x_min)) + (x_max - x_min)) % (x_max - x_min) + x_min;
-    }
-    private int Clamp(int x, int x_min, int x_max) {
-        return x < x_min ? x_min : (x > x_max ? x_max : x);
     }
 
     /// <summary>
@@ -128,22 +108,10 @@ public class TexturedMaterial : Material {
     /// <param name="uv">UV coordinates between 0 and 1</param>
     /// <returns>texture colour</returns>
     protected Color ColourSample(Vec2 uv) {
-        var uvx = (int)(uv.X * TextureWidth);
-        var uvy = (int)(uv.Y * TextureHeight);
+        var uvx = (int)(uv.X * Texture.Width);
+        var uvy = (int)(uv.Y * Texture.Height);
 
-        switch (WrapMode) {
-            case TextureWrapMode.Repeat:
-                uvx = Wrap(uvx, 0, TextureWidth - 1);
-                uvy = Wrap(uvy, 0, TextureHeight - 1);
-                break;
-            case TextureWrapMode.Clamp:
-            default:
-                uvx = Clamp(uvx, 0, TextureWidth - 1);
-                uvy = Clamp(uvy, 0, TextureHeight - 1);
-                break;
-        }
-
-        return Texture[uvy, uvx];
+        return Texture[uvx, uvy];
     }
 }
 
@@ -151,7 +119,7 @@ public class TexturedMaterial : Material {
 /// Unlit textured material
 /// </summary>
 public class UnlitTexture : TexturedMaterial {
-    public UnlitTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+    public UnlitTexture(Texture2D texture) : base(texture) {}
     
     /// <summary>
     /// Shader to apply to each face's edges
@@ -234,7 +202,7 @@ public class DiffuseTexture : TexturedMaterial {
     /// </summary>
     /// <param name="texture">texture</param>
     /// <param name="wrap">texture sampling mode</param>
-    public DiffuseTexture(Color[,] texture, TextureWrapMode wrap = TextureWrapMode.Clamp) : base(texture, wrap) {}
+    public DiffuseTexture(Texture2D texture) : base(texture) {}
 
     private Color Darken(Color colour, double shade) {
         double r = shade * colour.R;
