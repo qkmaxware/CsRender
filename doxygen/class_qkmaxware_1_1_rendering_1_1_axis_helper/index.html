@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_base_camera/">
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_axis_helper/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Class Qkmaxware::Rendering::BaseCamera - Qkmaxware.Rendering</title>
+  <title>Class Qkmaxware::Rendering::AxisHelper - Qkmaxware.Rendering</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Class Qkmaxware::Rendering::BaseCamera";
-    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_base_camera.md";
-    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_base_camera/";
+    var mkdocs_page_name = "Class Qkmaxware::Rendering::AxisHelper";
+    var mkdocs_page_input_path = "doxygen/class_qkmaxware_1_1_rendering_1_1_axis_helper.md";
+    var mkdocs_page_url = "/CsRender/doxygen/class_qkmaxware_1_1_rendering_1_1_axis_helper/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -88,10 +88,10 @@
         
       
     
-    <li>Class Qkmaxware::Rendering::BaseCamera</li>
+    <li>Class Qkmaxware::Rendering::AxisHelper</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_base_camera.md"
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/class_qkmaxware_1_1_rendering_1_1_axis_helper.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -102,11 +102,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="class-qkmaxwarerenderingbasecamera">Class Qkmaxware::Rendering::BaseCamera</h1>
-<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>BaseCamera</strong></a></p>
-<p><em>Base class for a camera that can render a scene</em> </p>
+                <h1 id="class-qkmaxwarerenderingaxishelper">Class Qkmaxware::Rendering::AxisHelper</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>AxisHelper</strong></a></p>
+<p><em>XYZ axis helper</em> </p>
 <p>Inherits the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_scene_node/">Qkmaxware::Rendering::SceneNode</a></p>
-<p>Inherited by the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_perspective_camera/">Qkmaxware::Rendering::PerspectiveCamera</a></p>
 <h2 id="public-attributes-inherited-from-qkmaxwarerenderingscenenode">Public Attributes inherited from Qkmaxware::Rendering::SceneNode</h2>
 <p>See <a href="../class_qkmaxware_1_1_rendering_1_1_scene_node/">Qkmaxware::Rendering::SceneNode</a></p>
 <table>
@@ -178,23 +177,7 @@
 <tbody>
 <tr>
 <td align="right"></td>
-<td align="left"><a href="./#function-basecamera"><strong>BaseCamera</strong></a> (Size size) <br><em>Create a new camera with the given image size</em></td>
-</tr>
-<tr>
-<td align="right">void</td>
-<td align="left"><a href="./#function-render-12"><strong>Render</strong></a> (<a href="../class_qkmaxware_1_1_rendering_1_1_scene/"><strong>Scene</strong></a> scene) <br><em>Render the given scene to the pixel buffer</em></td>
-</tr>
-<tr>
-<td align="right">virtual abstract Vec3</td>
-<td align="left"><a href="./#function-screentoworldpoint"><strong>ScreenToWorldPoint</strong></a> (Vec2 screen) = 0<br><em>Convert from a screen position to a world position</em></td>
-</tr>
-<tr>
-<td align="right">void</td>
-<td align="left"><a href="./#function-setclippingdistance"><strong>SetClippingDistance</strong></a> (double near, double far) <br><em>Set the near and far clipping planes</em></td>
-</tr>
-<tr>
-<td align="right">virtual abstract Vec3</td>
-<td align="left"><a href="./#function-worldtoscreenpoint"><strong>WorldToScreenPoint</strong></a> (Vec3 world) = 0<br><em>Convert from a world position to a screen position</em></td>
+<td align="left"><a href="./#function-axishelper"><strong>AxisHelper</strong></a> () <br><em>Create a new axis helper</em></td>
 </tr>
 </tbody>
 </table>
@@ -238,121 +221,13 @@
 </tr>
 </tbody>
 </table>
-<h2 id="protected-attributes">Protected Attributes</h2>
-<table>
-<thead>
-<tr>
-<th align="right">Type</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">double</td>
-<td align="left"><a href="./#variable-farclipdistance"><strong>farClipDistance</strong></a>   = = 1000<br></td>
-</tr>
-<tr>
-<td align="right">readonly double</td>
-<td align="left"><a href="./#variable-focallength"><strong>focallength</strong></a>   = = 1<br></td>
-</tr>
-<tr>
-<td align="right">double</td>
-<td align="left"><a href="./#variable-nearclipdistance"><strong>nearClipDistance</strong></a>   = = 0.1<br></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions">Protected Functions</h2>
-<table>
-<thead>
-<tr>
-<th align="right">Type</th>
-<th align="left">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">virtual abstract void</td>
-<td align="left"><a href="./#function-dirty"><strong>Dirty</strong></a> () = 0<br><em>Event when camera properties change</em></td>
-</tr>
-</tbody>
-</table>
 <h2 id="public-functions-documentation">Public Functions Documentation</h2>
-<h3 id="function-basecamera">function BaseCamera</h3>
-<pre><code class="cpp">inline Qkmaxware::Rendering::BaseCamera::BaseCamera (
-    Size size
-) 
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>size</code> rendered image size</li>
-</ul>
-<h3 id="function-render-12">function Render [1/2]</h3>
-<pre><code class="cpp">inline void Qkmaxware::Rendering::BaseCamera::Render (
-    Scene scene
-) 
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>scene</code> scene to render</li>
-</ul>
-<h3 id="function-screentoworldpoint">function ScreenToWorldPoint</h3>
-<pre><code class="cpp">virtual abstract Vec3 Qkmaxware::Rendering::BaseCamera::ScreenToWorldPoint (
-    Vec2 screen
-) = 0
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>screen</code> screen position</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>world position</p>
-<h3 id="function-setclippingdistance">function SetClippingDistance</h3>
-<pre><code class="cpp">inline void Qkmaxware::Rendering::BaseCamera::SetClippingDistance (
-    double near,
-    double far
-) 
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>near</code> near clip plane distance</li>
-<li><code>far</code> far clip plane distance</li>
-</ul>
-<h3 id="function-worldtoscreenpoint">function WorldToScreenPoint</h3>
-<pre><code class="cpp">virtual abstract Vec3 Qkmaxware::Rendering::BaseCamera::WorldToScreenPoint (
-    Vec3 world
-) = 0
-</code></pre>
-
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>world</code> world position</li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>screen position</p>
-<h2 id="protected-attributes-documentation">Protected Attributes Documentation</h2>
-<h3 id="variable-farclipdistance">variable farClipDistance</h3>
-<pre><code class="cpp">double Qkmaxware.Rendering.BaseCamera.farClipDistance;
-</code></pre>
-
-<h3 id="variable-focallength">variable focallength</h3>
-<pre><code class="cpp">readonly double Qkmaxware.Rendering.BaseCamera.focallength;
-</code></pre>
-
-<h3 id="variable-nearclipdistance">variable nearClipDistance</h3>
-<pre><code class="cpp">double Qkmaxware.Rendering.BaseCamera.nearClipDistance;
-</code></pre>
-
-<h2 id="protected-functions-documentation">Protected Functions Documentation</h2>
-<h3 id="function-dirty">function Dirty</h3>
-<pre><code class="cpp">virtual abstract void Qkmaxware::Rendering::BaseCamera::Dirty () = 0
+<h3 id="function-axishelper">function AxisHelper</h3>
+<pre><code class="cpp">inline Qkmaxware::Rendering::AxisHelper::AxisHelper () 
 </code></pre>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>Render/src/BaseCamera.cs</code></p>
+<p>The documentation for this class was generated from the following file <code>Render/src/AxisHelper.cs</code></p>
               
             </div>
           </div>
@@ -360,10 +235,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../class_qkmaxware_1_1_rendering_1_1_diffuse_colour/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::DiffuseColour">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/" class="btn btn-neutral float-right" title="Class Qkmaxware::Rendering::BaseCamera">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../class_qkmaxware_1_1_rendering_1_1_axis_helper/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::AxisHelper"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/" class="btn btn-neutral" title="Class Qkmaxware::Rendering::AnimatedScene"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -391,10 +266,10 @@
           <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../class_qkmaxware_1_1_rendering_1_1_axis_helper/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../class_qkmaxware_1_1_rendering_1_1_animated_scene/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_diffuse_colour/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../class_qkmaxware_1_1_rendering_1_1_base_camera/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

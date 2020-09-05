@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/_animation_8cs_source/">
+  <link rel="canonical" href="http://qkmaxware.github.io/CsRender/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_renderable/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>File Animation.cs - Qkmaxware.Rendering</title>
+  <title>Interface Qkmaxware::Rendering::IRenderable - Qkmaxware.Rendering</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "File Animation.cs";
-    var mkdocs_page_input_path = "doxygen/_animation_8cs_source.md";
-    var mkdocs_page_url = "/CsRender/doxygen/_animation_8cs_source/";
+    var mkdocs_page_name = "Interface Qkmaxware::Rendering::IRenderable";
+    var mkdocs_page_input_path = "doxygen/interface_qkmaxware_1_1_rendering_1_1_i_renderable.md";
+    var mkdocs_page_url = "/CsRender/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_renderable/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -88,10 +88,10 @@
         
       
     
-    <li>File Animation.cs</li>
+    <li>Interface Qkmaxware::Rendering::IRenderable</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/_animation_8cs_source.md"
+        <a href="https://github.com/qkmaxware/CsRender/edit/master/docs/doxygen/interface_qkmaxware_1_1_rendering_1_1_i_renderable.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -102,102 +102,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="file-animationcs">File Animation.cs</h1>
-<p><a href="../files/"><strong>File List</strong></a> <strong>&gt;</strong> <a href="../dir_3d93a40d3a63baa1169d25b6af232e01/"><strong>Render</strong></a> <strong>&gt;</strong> <a href="../dir_215dca11daae57d51d6f58cd4be0ab9f/"><strong>src</strong></a> <strong>&gt;</strong> <a href="../_animation_8cs/"><strong>Animation.cs</strong></a></p>
-<p><a href="../_animation_8cs/">Go to the documentation of this file.</a> </p>
-<pre><code class="cpp">using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-
-namespace Qkmaxware.Rendering {
-
-public interface IAnimator {
-    void OnStart() {}
-    void OnEarlyUpdate(TimeSpan dt) {}
-    void OnUpdate(TimeSpan dt) {}
-    void OnLateUpdate(TimeSpan dt) {}
-}
-
-public abstract class AnimatedScene : IEnumerable&lt;Color[,]&gt; {
-
-    public Scene Scene;
-    public BaseCamera Camera {get; private set;}
-
-
-    protected abstract TimeSpan DeltaTime();
-
-    public AnimatedScene(Scene scene) : this(new PerspectiveCamera(new Size(640, 480)), scene) {}
-
-    public AnimatedScene(BaseCamera camera, Scene scene) {
-        this.Camera = camera;
-        this.Scene = scene;
-    }
-
-    public virtual IEnumerator&lt;Color[,]&gt; GetEnumerator() {
-        // First render
-        var initialObjects = Scene.OfType&lt;IAnimator&gt;();
-        foreach (var obj in initialObjects) {
-            obj.OnStart();
-        }
-        Camera.Render(Scene);
-        yield return Camera.PixelBuffer;
-
-        // Subsequent render loop
-        while(true) {
-            var objects = Scene.OfType&lt;IAnimator&gt;();
-            var dt = this.DeltaTime();
-            foreach (var obj in objects) {
-                obj.OnEarlyUpdate(dt);
-            }
-            foreach (var obj in objects) {
-                obj.OnUpdate(dt);
-            }
-            foreach (var obj in objects) {
-                obj.OnLateUpdate(dt);
-            }
-            Camera.Render(Scene);
-            yield return Camera.PixelBuffer;
-        }
-    }
-
-    IEnumerator IEnumerable.GetEnumerator() {
-        return GetEnumerator();
-    }
-}
-
-public class FixedFpsAnimatedScene : AnimatedScene {
-    public int FPS = 30;
-
-    public FixedFpsAnimatedScene(Scene scene, int fps = 30) : base(scene) {
-        this.FPS = fps;
-    }
-
-    public FixedFpsAnimatedScene(BaseCamera camera, Scene scene, int fps = 30) : base(camera, scene) {
-        this.FPS = fps;
-    }
-
-    protected override TimeSpan DeltaTime() {
-        return TimeSpan.FromSeconds(1.0/FPS);
-    }
-}
-
-public class RealtimeAnimatedScene : AnimatedScene {
-    public RealtimeAnimatedScene(Scene scene) : base(scene) {}
-    public RealtimeAnimatedScene(BaseCamera camera, Scene scene) : base(camera, scene) {}
-
-    private DateTime lastFrame = DateTime.Now;
-    protected override TimeSpan DeltaTime() {
-        var now = DateTime.Now;
-        var dt = now - lastFrame;
-        lastFrame = now;
-        return dt;
-    }
-}
-
-}
-</code></pre>
+                <h1 id="interface-qkmaxwarerenderingirenderable">Interface Qkmaxware::Rendering::IRenderable</h1>
+<p><a href="../annotated/"><strong>Class List</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware/"><strong>Qkmaxware</strong></a> <strong>&gt;</strong> <a href="../namespace_qkmaxware_1_1_rendering/"><strong>Rendering</strong></a> <strong>&gt;</strong> <a href="./"><strong>IRenderable</strong></a></p>
+<p><em>Interface for any renderable 3d objects</em> </p>
+<p>Inherited by the following classes: <a href="../class_qkmaxware_1_1_rendering_1_1_mesh_renderer/">Qkmaxware::Rendering::MeshRenderer</a></p>
+<hr />
+<p>The documentation for this class was generated from the following file <code>Render/src/IRenderable.cs</code></p>
               
             </div>
           </div>
@@ -205,10 +115,10 @@ public class RealtimeAnimatedScene : AnimatedScene {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../_axis_helper_8cs/" class="btn btn-neutral float-right" title="File AxisHelper.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../interface_qkmaxware_1_1_rendering_1_1_i_uv_map/" class="btn btn-neutral float-right" title="Interface Qkmaxware::Rendering::IUvMap">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../_animation_8cs/" class="btn btn-neutral" title="File Animation.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/" class="btn btn-neutral" title="Interface Qkmaxware::Rendering::IAnimator"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -236,10 +146,10 @@ public class RealtimeAnimatedScene : AnimatedScene {
           <a href="https://github.com/qkmaxware/CsRender/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../_animation_8cs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../interface_qkmaxware_1_1_rendering_1_1_i_animator/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../_axis_helper_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../interface_qkmaxware_1_1_rendering_1_1_i_uv_map/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -164,10 +164,10 @@ public abstract class BaseCamera : SceneNode {
         vars.LightSources = scene.OfType&lt;LightSource&gt;().ToList().AsReadOnly();
 
         // Loop over all models
-        foreach (var renderable in scene.OfType&lt;Renderable&gt;()) {
+        foreach (var renderable in scene.OfType&lt;IRenderable&gt;()) {
             vars.ModelToWorld = renderable.LocalToWorldMatrix;
             if (renderable.Mesh != null &amp;&amp; renderable.Material != null) {
-                Render(ref vars, renderable.Mesh, renderable.UVs, renderable.Material);
+                Render(ref vars, renderable.Mesh, renderable.UVs, (Material)renderable.Material);
             }
         }
     }
@@ -285,7 +285,7 @@ public abstract class BaseCamera : SceneNode {
 
     private void SetPixel(Vec3 pixel, Color c) {
         var x = (int)Math.Floor(pixel.X);
-        var y = (int)Math.Floor(pixel.Y);
+        var y = Size.Height - (int)Math.Floor(pixel.Y);
         var depth = pixel.Z;
 
         if (x &gt;= 0 &amp;&amp; y &gt;= 0 &amp;&amp; x &lt; Size.Width &amp;&amp; y &lt; Size.Height) {
@@ -391,7 +391,7 @@ public abstract class BaseCamera : SceneNode {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../_light_source_8cs/" class="btn btn-neutral float-right" title="File LightSource.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../_i_renderable_8cs/" class="btn btn-neutral float-right" title="File IRenderable.cs">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../_base_camera_8cs/" class="btn btn-neutral" title="File BaseCamera.cs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -425,7 +425,7 @@ public abstract class BaseCamera : SceneNode {
         <span><a href="../_base_camera_8cs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../_light_source_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../_i_renderable_8cs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
