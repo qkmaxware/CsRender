@@ -71,7 +71,7 @@ public class GradientSkybox : Skybox {
         } else {
             var vangle = Math.Acos(z / length);
             var interpolation_factor = vangle / Math.PI; // angles are 0deg to 180deg (0 to Pi radians)
-            return Blend(top, bottom, interpolation_factor);
+            return Blend(bottom, top, interpolation_factor);
         }
     }
 }

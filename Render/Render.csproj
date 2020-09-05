@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <PackageId>Qkmaxware.Rendering</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Colin Halseth</Authors>
     <PackageTags>softrendering</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Qkmaxware.Geometry" Version="1.0.4" />
+    <PackageReference Include="Qkmaxware.Geometry" Version="1.0.6" />
   </ItemGroup>
 
 </Project>

@@ -99,10 +99,10 @@ public abstract class BaseCamera : SceneNode {
         vars.LightSources = scene.OfType<LightSource>().ToList().AsReadOnly();
 
         // Loop over all models
-        foreach (var renderable in scene.OfType<Renderable>()) {
+        foreach (var renderable in scene.OfType<IRenderable>()) {
             vars.ModelToWorld = renderable.LocalToWorldMatrix;
             if (renderable.Mesh != null && renderable.Material != null) {
-                Render(ref vars, renderable.Mesh, renderable.UVs, renderable.Material);
+                Render(ref vars, renderable.Mesh, renderable.UVs, (Material)renderable.Material);
             }
         }
     }
@@ -220,7 +220,7 @@ public abstract class BaseCamera : SceneNode {
 
     private void SetPixel(Vec3 pixel, Color c) {
         var x = (int)Math.Floor(pixel.X);
-        var y = (int)Math.Floor(pixel.Y);
+        var y = Size.Height - (int)Math.Floor(pixel.Y);
         var depth = pixel.Z;
 
         if (x >= 0 && y >= 0 && x < Size.Width && y < Size.Height) {

@@ -7,13 +7,13 @@ All scene management start off from the `Scene` class which acts as the root of 
 Scene scene = new Scene();
 ```
 
-We can attach `SceneNode` objects to the scene and to other scene nodes in order to fill out the scene hierarchy. Currently there are 3 types of scene nodes. The base `SceneNode` class is used purely to construct the hierarchy and provides no additional functionality. The `Renderable` class is used to render a geometric object to the camera. This object can be provided with a UV map which is used to map geometry vertices to texture coordinates as well as a material which defines how the object is coloured. Additionally the `Animator` class is used with an `AnimatedScene` to apply actions to nodes between animation frames which is covered the section [Animated Scenes](#animated-scenes).
+We can attach `SceneNode` objects to the scene and to other scene nodes in order to fill out the scene hierarchy. Currently there are 3 types of scene nodes. The base `SceneNode` class is used purely to construct the hierarchy and provides no additional functionality. The `MeshRenderer` class is used to render a geometric object to the camera. This object can be provided with a UV map which is used to map geometry vertices to texture coordinates as well as a material which defines how the object is coloured. Additionally the `Animator` class is used with an `AnimatedScene` to apply actions to nodes between animation frames which is covered the section [Animated Scenes](#animated-scenes).
 
 ```cs
 SceneNode emptyNode = new SceneNode();
 scene.Add(emptyNode);
 
-Renderable mesh = new Renderable(
+MeshRenderer mesh = new MeshRenderer(
     mesh: new Sphere(radius: 1, centre: Vec3.Zero),
     uv: null,
     material: new Wireframe(Color.Red) 

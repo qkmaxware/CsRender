@@ -23,7 +23,7 @@ public class RenderingTest {
         
         // Create object
         var mesh = new Geometry.Primitives.Cube(size: 1, centre: Vec3.Zero);
-        var obj = new Renderable(mesh: mesh, uv: UV.Spherical(mesh), material: new Wireframe(Color.Red));
+        var obj = new MeshRenderer(mesh: mesh, uv: UV.Spherical(mesh), material: new Wireframe(Color.Red));
         scene.Add(obj);
 
         // Render
@@ -42,9 +42,9 @@ public class RenderingTest {
         var bblock  = Transformation.Scale(new Vec3(0.2, 1, 0.2)) * new Cube(size: 1, centre: Vec3.Zero);
         var ball    = new Sphere(radius: 0.2, centre: Vec3.Zero);
 
-        var aobj    = new Renderable(mesh: ablock, material: new UnlitColour(Color.Red));
-        var bobj    = new Renderable(mesh: bblock, material: new UnlitColour(Color.Blue));
-        var ballobj = new Renderable(mesh: ball, material: new UnlitColour(Color.Yellow));
+        var aobj    = new MeshRenderer(mesh: ablock, material: new UnlitColour(Color.Red));
+        var bobj    = new MeshRenderer(mesh: bblock, material: new UnlitColour(Color.Blue));
+        var ballobj = new MeshRenderer(mesh: ball, material: new UnlitColour(Color.Yellow));
         
         aobj.Transform = Transformation.Offset(new Vec3(-1, 0, 0));
         bobj.Transform = Transformation.Offset(new Vec3(1, 0, 0));
@@ -68,6 +68,8 @@ public class RenderingTest {
         camera.Skybox = new GradientSkybox(Color.FromArgb (255, 58, 58, 82), Color.FromArgb (255, 2, 1, 17));
 
         // Create objects
+        var helper = new AxisHelper();
+
         var planet = new Geometry.Primitives.Sphere(radius: 1, centre: Vec3.Zero, horizontalResolution: 32, verticalResolution: 32);
         var planetTexture = LoadImage("assets/planet.png");
 
@@ -77,12 +79,18 @@ public class RenderingTest {
         var hierarchy = new SceneNode();
         scene.Add(hierarchy);
 
-        var planetObj = new Renderable(mesh: planet, uv: UV.Spherical(planet), material: new UnlitTexture(planetTexture));
+        var planetObj = new MeshRenderer(mesh: planet, uv: UV.Spherical(planet), material: new UnlitTexture(planetTexture));
         hierarchy.Add(planetObj);
 
-        var satelliteObj = new Renderable(mesh: satellite, uv: UV.Spherical(satellite), material: new UnlitTexture(satelliteTexture)); 
+        var satelliteObj = new MeshRenderer(mesh: satellite, uv: UV.Spherical(satellite), material: new UnlitTexture(satelliteTexture)); 
         satelliteObj.Transform = Transformation.Offset(new Vec3(-1.6, 1.6, 0.1));
         hierarchy.Add(satelliteObj);
+
+        helper.Transform = Transformation.Scale(Vec3.One * 1.3);
+        helper.XLabel = "X";
+        helper.YLabel = "Y";
+        helper.ZLabel = "Z";
+        hierarchy.Add(helper);
 
         // Render
         SaveAnimation("render.complex", SpinAnimation(camera, hierarchy, frames: 64));
